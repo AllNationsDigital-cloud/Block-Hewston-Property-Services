@@ -101,7 +101,7 @@
       const local = /^(localhost|127\.|0\.0\.0\.0)/.test(location.hostname) || location.protocol === 'file:';
       try {
         if (local) { await new Promise((r) => setTimeout(r, 600)); console.info('[demo mode] Form not sent. Payload:', Object.fromEntries([...fd].map(([k, v]) => [k, v instanceof File ? v.name : v]))); }
-        else { const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }); const out = await res.json().catch(() => ({})); if (!res.ok || out.ok === false) throw new Error(res.status); }
+        else { const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }); const out = await res.json().catch(() => ({})); if (!res.ok || String(out.success) === 'false') throw new Error(out.message || res.status); }
         const who = $('[data-echo-name]', success); if (who) who.textContent = (fd.get('name') || '').toString().split(' ')[0] || 'there';
         form.hidden = true; $$('.hide-on-success').forEach((n) => (n.hidden = true));
         success.classList.add('is-on'); success.tabIndex = -1; success.focus(); success.scrollIntoView({ block: 'start', behavior: 'smooth' });

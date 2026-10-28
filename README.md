@@ -9,7 +9,6 @@ src/layout.html      <head> (SEO/OG/JSON-LD), header, footer
 src/partials/        cta.html (final CTA band), sprite.html (icons)
 src/pages/*.html     one file per page; first line is a <!--{meta}--> JSON header
 src/static/          css/site.css, js/site.js, img/, favicon, _headers (copied as-is)
-functions/api/form.js  Cloudflare Pages Function that emails form submissions
 tools/               local preview server
 ```
 
@@ -29,8 +28,6 @@ npm run dev        # builds, then serves http://localhost:8080
 | Build output directory | `public` |
 | Env var (optional) | `NODE_VERSION` = `22` |
 
-The `functions/` folder deploys automatically with the site.
-
 Netlify works with the included `netlify.toml` (and its built-in Forms). Any static host works: run `node build.mjs` and upload `public/`.
 
 After you pick the domain, set `"url"` in `site.config.json` (used for canonical URLs, Open Graph, sitemap, schema). It currently defaults to `https://service.blockandhewston.com`.
@@ -43,17 +40,11 @@ After you pick the domain, set `"url"` in `site.config.json` (used for canonical
 - **FAQ:** add a `<details><summary>…</summary><div class="ans">…</div></details>`. FAQPage schema is generated automatically.
 
 ## Forms (quote + contact)
-Both forms POST to `/api/form`, a Cloudflare Pages Function (`functions/api/form.js`) that emails each submission, with quote photos attached, through [Resend](https://resend.com).
+Both forms post to [FormSubmit](https://formsubmit.co), which emails each submission to `service@blockandhewston.com` (the address in `site.config.json`). No account or API key.
 
-One-time setup:
-1. Create a Resend account and verify the `blockandhewston.com` domain.
-2. In Cloudflare Pages → your project → **Settings → Variables and Secrets**, add (Production):
-   - `RESEND_API_KEY` (secret)
-   - `MAIL_FROM` e.g. `Block & Hewston Website <website@blockandhewston.com>`
-   - `MAIL_TO` e.g. `service@blockandhewston.com` (comma-separate for more)
-3. Redeploy. Submit a test quote, which should arrive within a minute.
+**One-time activation:** after deploying, submit a test quote from the live site. FormSubmit emails that inbox an activation link; click it once and all later submissions arrive as normal emails. Check spam if it doesn't show.
 
-Notes: photos are limited to 10 images of 10 MB each in the browser; the function skips anything larger. A hidden honeypot field blocks simple bots. To send to a CRM instead, edit the `fetch` in `functions/api/form.js`. On `localhost` the forms run in demo mode (success state, payload logged to the console).
+Notes: photo attachments are limited by FormSubmit (about 5 MB total on the free plan). If you need more, or want submissions in a CRM, point the forms' `action` at another service. On `localhost` the forms run in demo mode (success state, payload logged to the console).
 
 ## Analytics
 Paste your snippet (Plausible, GA4, etc.) into `"analytics"` in `site.config.json`. The forms fire `plausible('Form Submit')` / `gtag('event','generate_lead')` if those exist.
