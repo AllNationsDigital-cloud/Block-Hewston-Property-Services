@@ -133,7 +133,7 @@ html:not(.js) .nav{position:static;display:block}html:not(.js) .menu-btn{display
 @media(min-width:800px){.grid--3{grid-template-columns:repeat(3,1fr)}}
 
 /* Services page */
-.stack{border-top:1px solid var(--gold)}
+.stack{}
 .svc{padding:1.75rem 0;border-top:1px solid var(--line);display:grid;gap:1rem}
 .svc:first-child{border-top:0}
 .svc h2{margin:0 0 .5rem;font-size:2.1rem}
@@ -212,3 +212,41 @@ tbody th{color:var(--ink);font-weight:600}td.rate{font-weight:600;color:var(--in
 @media(min-width:800px){.foot{grid-template-columns:1.5fr 1.3fr 1fr 1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{.site-header,.site-footer,.cta{display:none}}
+
+/* ---- Home: focal hero, big tiles, process ---- */
+.hero--dark{position:relative;background:var(--night);color:#d9d2c0;border:0;padding:0;display:flex;flex-direction:column;min-height:min(44rem,calc(100svh - var(--hdr)));overflow:hidden}
+.hero--dark::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 70% at 85% 100%,rgba(163,129,63,.28),transparent 70%),radial-gradient(40% 50% at 0 0,rgba(86,92,102,.2),transparent 70%)}
+.hero--dark .wrap{position:relative;width:100%}
+.hero__in{flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(3rem,8vw,5rem);padding-bottom:clamp(2rem,5vw,3rem)}
+.hero--dark h1{color:var(--ivory);font-size:clamp(3.4rem,10vw,8rem);line-height:.98;letter-spacing:-.02em;margin:0 0 1.5rem}
+.hero--dark h1 em{color:var(--gold-bright)}
+.hero--dark .lede{color:#d9d2c0;margin:0 0 2.25rem;max-width:24em}
+.btn--gold{background:var(--gold-bright);border-color:var(--gold-bright);color:var(--night)}
+.btn--gold::before{background:var(--ivory)}
+.hero__facts{list-style:none;margin:0;padding:1.25rem 0;border-top:1px solid rgba(201,168,92,.3);display:flex;flex-wrap:wrap;gap:.4rem 2.25rem;font:500 1rem/1 var(--caps);font-variant:small-caps;text-transform:lowercase;letter-spacing:.2em;color:#b9b09b}
+.section--big{padding:clamp(3.5rem,8vw,6rem) 0}
+.section--big .sec-head h2{font-size:clamp(2.4rem,5vw,3.75rem)}
+.tiles{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.tiles a{background:var(--paper);display:flex;flex-direction:column;min-height:13rem;padding:1.5rem 1.6rem;text-decoration:none;color:var(--ink);transition:background .5s var(--ease),color .5s var(--ease)}
+.tiles__n{font:500 1rem/1 var(--caps);letter-spacing:.2em;color:var(--gold-text)}
+.tiles h3{font-size:clamp(1.8rem,3vw,2.3rem);font-weight:400;margin:.9rem 0 auto;line-height:1.05}
+.tiles__p{margin-top:1.5rem;font-size:1.9rem;line-height:1;color:var(--gold-text);font-weight:500}
+.tiles__p small{display:block;margin-top:.45rem;font:500 .95rem/1 var(--caps);font-variant:small-caps;text-transform:lowercase;letter-spacing:.18em;color:var(--muted)}
+.tiles a:hover{background:var(--night);color:var(--ivory)}
+.tiles a:hover h3{color:var(--ivory)}.tiles a:hover .tiles__p{color:var(--gold-bright)}.tiles a:hover .tiles__p small,.tiles a:hover .tiles__n{color:#b9b09b}
+@media(min-width:640px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.tiles{grid-template-columns:repeat(3,1fr)}.tiles a{min-height:15rem;padding:1.75rem 2rem}}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:1.75rem;counter-reset:f}
+.flow li{counter-increment:f;border-top:1px solid var(--gold);padding-top:1rem}
+.flow li::before{content:counter(f,upper-roman);display:block;font:500 1rem/1 var(--caps);letter-spacing:.2em;color:var(--gold-text);margin-bottom:.5rem}
+.flow b{display:block;font:400 clamp(2.4rem,5vw,3.6rem)/1 var(--serif);color:var(--ink)}
+.flow span{display:block;margin-top:.4rem;font-style:italic;color:var(--muted)}
+@media(min-width:800px){.flow{grid-template-columns:repeat(4,1fr);gap:2.5rem}}
+/* Inner pages: more air, bigger type */
+.page-head{padding:clamp(3rem,7vw,5rem) 0 clamp(2rem,4vw,3rem)}
+.section{padding:clamp(3rem,7vw,5.5rem) 0}
+.svc{padding:2.5rem 0}
+.svc h2{font-size:clamp(2.2rem,4vw,3rem)}
+.svc dd{font-size:1.9rem;color:var(--gold-text);font-weight:500;line-height:1}
+.svc dl{gap:1.25rem 3rem;margin-top:1.25rem}
+.svc dt{margin-bottom:.45rem}
