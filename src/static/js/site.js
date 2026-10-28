@@ -11,13 +11,6 @@
     nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
   }
 
-  /* Reveal on scroll */
-  const rev = $$('.reveal');
-  if ('IntersectionObserver' in window && rev.length) {
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
-    rev.forEach((el) => io.observe(el));
-  } else rev.forEach((el) => el.classList.add('in'));
-
   /* Before / after sliders */
   $$('.ba').forEach((ba) => {
     const r = $('.ba__range', ba);

@@ -13,13 +13,47 @@
   "formEndpoint": "",
   "analytics": "",
   "nav": [
-    { "href": "/services/", "label": "Services", "key": "services" },
-    { "href": "/pricing/", "label": "Pricing", "key": "pricing" },
-    { "href": "/property-managers/", "label": "For Property Managers", "key": "property-managers" },
-    { "href": "/gallery/", "label": "Gallery", "key": "gallery" },
-    { "href": "/about/", "label": "About", "key": "about" },
-    { "href": "/service-area/", "label": "Service Area", "key": "service-area", "more": true },
-    { "href": "/faq/", "label": "FAQ", "key": "faq", "more": true },
-    { "href": "/contact/", "label": "Contact", "key": "contact" }
+    {
+      "href": "/services/",
+      "label": "Services",
+      "key": "services"
+    },
+    {
+      "href": "/pricing/",
+      "label": "Pricing",
+      "key": "pricing"
+    },
+    {
+      "href": "/property-managers/",
+      "label": "Property Managers",
+      "key": "property-managers"
+    },
+    {
+      "href": "/gallery/",
+      "label": "Gallery",
+      "key": "gallery"
+    },
+    {
+      "href": "/about/",
+      "label": "About",
+      "key": "about"
+    },
+    {
+      "href": "/service-area/",
+      "label": "Service Area",
+      "key": "service-area",
+      "more": true
+    },
+    {
+      "href": "/faq/",
+      "label": "FAQ",
+      "key": "faq",
+      "more": true
+    },
+    {
+      "href": "/contact/",
+      "label": "Contact",
+      "key": "contact"
+    }
   ]
 }

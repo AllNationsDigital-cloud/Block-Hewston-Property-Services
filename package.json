@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node build.mjs",
     "dev": "node build.mjs && node tools/serve.mjs",
-    "assets": "node tools/make-placeholders.mjs && node tools/make-brand-assets.mjs"
+    "assets": "node tools/make-placeholders.mjs"
   },
   "engines": { "node": ">=18" }
 }

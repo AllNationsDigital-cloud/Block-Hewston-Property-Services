@@ -9,7 +9,7 @@ src/layout.html      <head> (SEO/OG/JSON-LD), header, footer
 src/partials/        cta.html (final CTA band), sprite.html (icons)
 src/pages/*.html     one file per page; first line is a <!--{meta}--> JSON header
 src/static/          css/site.css, js/site.js, img/, favicon, _headers (copied as-is)
-tools/               placeholder-image + brand-asset generators, local server
+tools/               placeholder-image generator, local server
 ```
 
 ## Run locally
@@ -51,7 +51,7 @@ Paste your snippet (Plausible, GA4, etc.) into `"analytics"` in `site.config.jso
 
 ## Images
 - `src/static/img/*.svg` are **generated placeholders** (`before-/after-` living, kitchen, cleanout). Replace with real photos: keep the same camera position for before/after, 3:2 landscape, about 1600 px wide, compressed JPG/WebP under about 250 KB. Update `src` in `gallery.html` (and the hero image in `index.html`), and rewrite the `alt` text to describe the real photo.
-- `og-image.png` (1200×630), `apple-touch-icon.png`, `favicon.svg`, `logo.svg` are simple generated brand assets. Swap in final artwork with the same names.
+- `logo-dark/light/gold.png` come from the supplied B&H logo (transparent PNGs). `og-image.png`, `apple-touch-icon.png` and `favicon.png` are built from it; replace with final artwork using the same names (a vector SVG logo would be sharper).
 - `service-area-map.svg` is illustrative. To use a live map instead, replace the `<img>` in `service-area.html` with a Google Maps embed `<iframe title="Map of service area" loading="lazy" …>`.
 
 ## Pre-launch checklist: things to fill in or confirm
@@ -71,5 +71,5 @@ Find the placeholders: `grep -rn "\[[A-Z]" src/pages site.config.json`
 ## Quality notes
 - Semantic landmarks, skip link, visible focus, keyboard-operable menu/slider/form, form errors announced via `role="alert"`, color contrast designed for WCAG AA, `prefers-reduced-motion` respected. Run Lighthouse and axe after you swap in real content.
 - Works without JS (menu and content show; form steps collapse into one long form; the before/after slider needs JS).
-- Fonts load from Google Fonts (Newsreader + Inter). To self-host, download them to `src/static/fonts/` and replace the `<link>` in `src/layout.html`.
+- Uses the system font stack, so there are no external font requests.
 - Security headers/caching in `src/static/_headers` (Cloudflare Pages and Netlify both read it).

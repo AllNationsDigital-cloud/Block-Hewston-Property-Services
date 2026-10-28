@@ -47,7 +47,7 @@ function schema() {
     telephone: config.phoneTel,
     email: config.email,
     image: `${config.url}/img/og-image.png`,
-    logo: `${config.url}/img/logo.svg`,
+    logo: `${config.url}/img/logo-dark.png`,
     description: 'Veteran-led rental turnover cleaning, cleanouts, painting, minor repairs and make-ready for property managers, landlords and investors in Shreveport–Bossier, Louisiana.',
     priceRange: '$$',
     address: { '@type': 'PostalAddress', addressLocality: 'Shreveport', addressRegion: 'LA', addressCountry: 'US' },
