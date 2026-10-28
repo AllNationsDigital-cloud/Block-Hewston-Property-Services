@@ -30,7 +30,7 @@ npm run dev        # builds, then serves http://localhost:8080
 
 Netlify works with the included `netlify.toml` (and its built-in Forms). Any static host works: run `node build.mjs` and upload `public/`.
 
-After you pick the domain, set `"url"` in `site.config.json` (used for canonical URLs, Open Graph, sitemap, schema). It currently defaults to `https://properties.blockandhewston.com` as a guess.
+After you pick the domain, set `"url"` in `site.config.json` (used for canonical URLs, Open Graph, sitemap, schema). It currently defaults to `https://service.blockandhewston.com`.
 
 ## Editing content
 - **Contact details, hours, nav, analytics:** `site.config.json`.
