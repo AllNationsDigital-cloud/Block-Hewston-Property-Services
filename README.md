@@ -9,7 +9,8 @@ src/layout.html      <head> (SEO/OG/JSON-LD), header, footer
 src/partials/        cta.html (final CTA band), sprite.html (icons)
 src/pages/*.html     one file per page; first line is a <!--{meta}--> JSON header
 src/static/          css/site.css, js/site.js, img/, favicon, _headers (copied as-is)
-tools/               placeholder-image generator, local server
+functions/api/form.js  Cloudflare Pages Function that emails form submissions
+tools/               local preview server
 ```
 
 ## Run locally
@@ -28,6 +29,8 @@ npm run dev        # builds, then serves http://localhost:8080
 | Build output directory | `public` |
 | Env var (optional) | `NODE_VERSION` = `22` |
 
+The `functions/` folder deploys automatically with the site.
+
 Netlify works with the included `netlify.toml` (and its built-in Forms). Any static host works: run `node build.mjs` and upload `public/`.
 
 After you pick the domain, set `"url"` in `site.config.json` (used for canonical URLs, Open Graph, sitemap, schema). It currently defaults to `https://service.blockandhewston.com`.
@@ -39,18 +42,24 @@ After you pick the domain, set `"url"` in `site.config.json` (used for canonical
 - **Per-page SEO:** the JSON header on line 1 of each page (`title`, `description`).
 - **FAQ:** add a `<details><summary>…</summary><div class="ans">…</div></details>`. FAQPage schema is generated automatically.
 
-## Wiring the forms (quote + contact)
-Both forms POST `multipart/form-data` (including photo uploads) via `fetch`.
-- **Netlify:** works out of the box (`data-netlify`). Set notification emails in the Netlify dashboard. Uploads are limited to about 8 MB per request there.
-- **Formspree / Basin / Getform:** set `"formEndpoint"` in `site.config.json` to the endpoint URL.
-- **CRM / email via your own API (Cloudflare Worker, Zapier/Make webhook, HubSpot, etc.):** point `formEndpoint` at it. Fields: `property_type, street, city, state, zip, units, services (repeated), notes, move_out_date, flexibility, photos (files), name, company, phone, email, contact_preference, consent`. A hidden `bot-field` honeypot is included; reject submissions where it is filled.
-- On `localhost` with no endpoint set, the form runs in **demo mode** (shows the success state, logs the payload to the console). On any real host with no endpoint, it posts to `/` and shows an error message with your phone/email if that fails. **On Cloudflare Pages you must set `formEndpoint`** (Cloudflare has no built-in form handler).
+## Forms (quote + contact)
+Both forms POST to `/api/form`, a Cloudflare Pages Function (`functions/api/form.js`) that emails each submission, with quote photos attached, through [Resend](https://resend.com).
+
+One-time setup:
+1. Create a Resend account and verify the `blockandhewston.com` domain.
+2. In Cloudflare Pages → your project → **Settings → Variables and Secrets**, add (Production):
+   - `RESEND_API_KEY` (secret)
+   - `MAIL_FROM` e.g. `Block & Hewston Website <website@blockandhewston.com>`
+   - `MAIL_TO` e.g. `service@blockandhewston.com` (comma-separate for more)
+3. Redeploy. Submit a test quote, which should arrive within a minute.
+
+Notes: photos are limited to 10 images of 10 MB each in the browser; the function skips anything larger. A hidden honeypot field blocks simple bots. To send to a CRM instead, edit the `fetch` in `functions/api/form.js`. On `localhost` the forms run in demo mode (success state, payload logged to the console).
 
 ## Analytics
 Paste your snippet (Plausible, GA4, etc.) into `"analytics"` in `site.config.json`. The forms fire `plausible('Form Submit')` / `gtag('event','generate_lead')` if those exist.
 
 ## Images
-- `src/static/img/*.svg` are **generated placeholders** (`before-/after-` living, kitchen, cleanout). Replace with real photos: keep the same camera position for before/after, 3:2 landscape, about 1600 px wide, compressed JPG/WebP under about 250 KB. Update `src` in `gallery.html` (and the hero image in `index.html`), and rewrite the `alt` text to describe the real photo.
+- The site has no photos yet. Add real ones as needed under `src/static/img/` with descriptive alt text.
 - `logo-dark/light/gold.png` come from the supplied B&H logo (transparent PNGs). `og-image.png`, `apple-touch-icon.png` and `favicon.png` are built from it; replace with final artwork using the same names (a vector SVG logo would be sharper).
 - `service-area-map.svg` is illustrative. To use a live map instead, replace the `<img>` in `service-area.html` with a Google Maps embed `<iframe title="Map of service area" loading="lazy" …>`.
 

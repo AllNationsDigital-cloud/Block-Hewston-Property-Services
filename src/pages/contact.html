@@ -11,7 +11,7 @@
     <p><a class="btn btn--dark" href="/quote/">Request a quote</a></p>
   </div>
   <div data-panel>
-    <form class="form" name="contact" method="post" action="/" data-form data-netlify="true" netlify-honeypot="bot-field" novalidate{{config.formEndpointAttr}}>
+    <form class="form" name="contact" method="post" action="/api/form" data-form novalidate>
       <input type="hidden" name="form-name" value="contact">
       <p class="hp" aria-hidden="true"><label>Leave blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required data-label="your name"><p class="field__error" id="ec-name" role="alert"></p></div>

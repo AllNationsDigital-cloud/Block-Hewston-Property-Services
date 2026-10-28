@@ -10,7 +10,6 @@
   "hoursNote": "[CONFIRM DAYS / weekend availability]",
   "address": "[STREET ADDRESS], Shreveport, LA [ZIP]",
   "insuranceNote": "[CONFIRM: general liability carrier and limits. Certificate of insurance available on request.]",
-  "formEndpoint": "",
   "analytics": "",
   "nav": [
     {
@@ -27,11 +26,6 @@
       "href": "/property-managers/",
       "label": "Property Managers",
       "key": "property-managers"
-    },
-    {
-      "href": "/gallery/",
-      "label": "Gallery",
-      "key": "gallery"
     },
     {
       "href": "/about/",

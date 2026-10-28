@@ -8,7 +8,6 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const src = (...p) => path.join(root, 'src', ...p);
 const out = path.join(root, 'public');
 const config = JSON.parse(fs.readFileSync(path.join(root, 'site.config.json'), 'utf8'));
-config.formEndpointAttr = config.formEndpoint ? ` data-endpoint="${config.formEndpoint}"` : '';
 const today = new Date().toISOString().slice(0, 10);
 
 fs.rmSync(out, { recursive: true, force: true });

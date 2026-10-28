@@ -11,13 +11,6 @@
     nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
   }
 
-  /* Before / after sliders */
-  $$('.ba').forEach((ba) => {
-    const r = $('.ba__range', ba);
-    const set = () => ba.style.setProperty('--pos', r.value + '%');
-    r.addEventListener('input', set); set();
-  });
-
   /* Forms: validation, optional multi-step, submit */
   const MAX_FILES = 10, MAX_MB = 10;
   const label = (el) => el.dataset.label || 'this field';
@@ -104,13 +97,13 @@
       const submit = $('[type=submit]', form), orig = submit.textContent;
       submit.disabled = true; submit.textContent = 'Sending…';
       const fd = new FormData(form);
-      const endpoint = form.dataset.endpoint || form.getAttribute('action') || '/';
+      const endpoint = form.getAttribute('action');
       const local = /^(localhost|127\.|0\.0\.0\.0)/.test(location.hostname) || location.protocol === 'file:';
       try {
-        if (!form.dataset.endpoint && local) { await new Promise((r) => setTimeout(r, 600)); console.info('[demo mode] Form not sent. Payload:', Object.fromEntries([...fd].map(([k, v]) => [k, v instanceof File ? v.name : v]))); }
-        else { const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }); if (!res.ok) throw new Error(res.status); }
+        if (local) { await new Promise((r) => setTimeout(r, 600)); console.info('[demo mode] Form not sent. Payload:', Object.fromEntries([...fd].map(([k, v]) => [k, v instanceof File ? v.name : v]))); }
+        else { const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }); const out = await res.json().catch(() => ({})); if (!res.ok || out.ok === false) throw new Error(res.status); }
         const who = $('[data-echo-name]', success); if (who) who.textContent = (fd.get('name') || '').toString().split(' ')[0] || 'there';
-        form.hidden = true; $$('.hide-on-success', panel).forEach((n) => (n.hidden = true));
+        form.hidden = true; $$('.hide-on-success').forEach((n) => (n.hidden = true));
         success.classList.add('is-on'); success.tabIndex = -1; success.focus(); success.scrollIntoView({ block: 'start', behavior: 'smooth' });
         if (window.plausible) window.plausible('Form Submit', { props: { form: form.name } });
         if (window.gtag) window.gtag('event', 'generate_lead', { form: form.name });
