@@ -8,6 +8,8 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const src = (...p) => path.join(root, 'src', ...p);
 const out = path.join(root, 'public');
 const config = JSON.parse(fs.readFileSync(path.join(root, 'site.config.json'), 'utf8'));
+import crypto from 'node:crypto';
+const ver = (f) => crypto.createHash('md5').update(fs.readFileSync(path.join(root, 'src', 'static', f))).digest('hex').slice(0, 8);
 const today = new Date().toISOString().slice(0, 10);
 
 fs.rmSync(out, { recursive: true, force: true });
@@ -108,6 +110,8 @@ for (const file of fs.readdirSync(src('pages')).filter((f) => f.endsWith('.html'
     schema: schema(),
     extraHead,
     analytics: config.analytics || '<!-- Analytics placeholder: paste your snippet into site.config.json -> "analytics" -->',
+    cssv: ver('css/site.css'),
+    jsv: ver('js/site.js'),
     bodyClass: meta.bodyClass || ''
   }, `layout(${file})`);
 
