@@ -1,0 +1,25 @@
+{
+  "name": "Block & Hewston Property Services",
+  "short": "Block & Hewston",
+  "url": "https://properties.blockandhewston.com",
+  "parentUrl": "https://www.blockandhewston.com",
+  "phone": "443-365-8539",
+  "phoneTel": "+14433658539",
+  "email": "service@blockandhewston.com",
+  "hours": "Monday–Friday, 8am–5pm",
+  "hoursNote": "[CONFIRM DAYS / weekend availability]",
+  "address": "[STREET ADDRESS], Shreveport, LA [ZIP]",
+  "insuranceNote": "[CONFIRM: general liability carrier and limits. Certificate of insurance available on request.]",
+  "formEndpoint": "",
+  "analytics": "",
+  "nav": [
+    { "href": "/services/", "label": "Services", "key": "services" },
+    { "href": "/pricing/", "label": "Pricing", "key": "pricing" },
+    { "href": "/property-managers/", "label": "For Property Managers", "key": "property-managers" },
+    { "href": "/gallery/", "label": "Gallery", "key": "gallery" },
+    { "href": "/about/", "label": "About", "key": "about" },
+    { "href": "/service-area/", "label": "Service Area", "key": "service-area", "more": true },
+    { "href": "/faq/", "label": "FAQ", "key": "faq", "more": true },
+    { "href": "/contact/", "label": "Contact", "key": "contact" }
+  ]
+}

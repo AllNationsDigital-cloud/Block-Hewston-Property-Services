@@ -1,0 +1,41 @@
+<!--{"title":"Contact Block & Hewston Property Services | Shreveport, LA","description":"Call, email or message Block & Hewston Property Services in Shreveport. Business hours 8am–5pm. Request a walkthrough or quote.","nav":"contact"}-->
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1>Let’s talk about your next turn.</h1>
+    <p class="lede">Call for the fastest response. For a quote with photos and dates, use the <a href="/quote/">quote form</a>.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap split">
+    <div class="reveal">
+      <ul class="contact-list">
+        <li><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><div><b>Phone</b><a href="tel:{{config.phoneTel}}">{{config.phone}}</a></div></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg><div><b>Email</b><a href="mailto:{{config.email}}">{{config.email}}</a></div></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><div><b>Business hours</b>{{config.hours}} <span class="note">{{config.hoursNote}}</span></div></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg><div><b>Office</b>{{config.address}}<br><span class="note">Serving Shreveport, Bossier City and surrounding parishes. By appointment.</span></div></li>
+      </ul>
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="tel:{{config.phoneTel}}"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Call {{config.phone}}</a></p>
+    </div>
+    <div class="form-panel reveal" data-panel>
+      <form class="form" name="contact" method="post" action="/" data-form data-netlify="true" netlify-honeypot="bot-field" novalidate{{config.formEndpointAttr}}>
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hp" aria-hidden="true"><label>Leave blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <h2 style="font-size:1.6rem">Send a message</h2>
+        <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required data-label="your name"><p class="field__error" id="ec-name" role="alert"></p></div>
+        <div class="row row--2">
+          <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required data-label="your email"><p class="field__error" id="ec-email" role="alert"></p></div>
+          <div class="field"><label for="c-phone">Phone <span class="hint">(optional)</span></label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="c-msg">How can we help?</label><textarea id="c-msg" name="message" required data-label="a message"></textarea><p class="field__error" id="ec-msg" role="alert"></p></div>
+        <div class="form__alert" role="alert" tabindex="-1">We couldn’t send your message. Please call <a href="tel:{{config.phoneTel}}">{{config.phone}}</a> or email <a href="mailto:{{config.email}}">{{config.email}}</a>.</div>
+        <div class="form__nav"><button class="btn btn--primary" type="submit">Send message</button></div>
+      </form>
+      <div class="success" role="status">
+        <div class="success__icon"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></div>
+        <h2>Thanks, <span data-echo-name>there</span>. Message sent.</h2>
+        <p>We’ll reply within [1 business day]. For anything urgent, call <a href="tel:{{config.phoneTel}}">{{config.phone}}</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>

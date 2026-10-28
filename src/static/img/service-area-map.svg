@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" font-family="Inter,Arial,sans-serif">
+  <rect width="800" height="560" fill="#f6f3ee"/>
+  <g stroke="#e2dccf" stroke-width="1"><path d="M0 140h800M0 280h800M0 420h800M200 0v560M400 0v560M600 0v560" fill="none"/></g>
+  <path d="M385 0C415 110 360 190 395 280S440 430 410 560" fill="none" stroke="#b9cfd9" stroke-width="22" stroke-linecap="round"/>
+  <path d="M385 0C415 110 360 190 395 280S440 430 410 560" fill="none" stroke="#d3e2e9" stroke-width="12" stroke-linecap="round"/>
+  <path d="M0 322C220 312 540 262 800 252" fill="none" stroke="#1d2024" stroke-width="5" opacity=".75"/>
+  <path d="M312 0L330 300 L338 560" fill="none" stroke="#1d2024" stroke-width="5" opacity=".75"/>
+  <circle cx="400" cy="280" r="190" fill="none" stroke="#85692a" stroke-width="1.5" stroke-dasharray="6 7" opacity=".7"/>
+  <circle cx="400" cy="280" r="265" fill="none" stroke="#c9a867" stroke-width="1" stroke-dasharray="3 8" opacity=".7"/>
+  <text x="40" y="90" font-size="13" letter-spacing="3" fill="#5b616a">CADDO PARISH</text>
+  <text x="600" y="90" font-size="13" letter-spacing="3" fill="#5b616a">BOSSIER PARISH</text>
+  <text x="418" y="530" font-size="11" fill="#6b8896" font-style="italic">Red River</text>
+  <text x="60" y="344" font-size="11" fill="#1d2024" font-weight="600">I-20</text>
+  <text x="344" y="500" font-size="11" fill="#1d2024" font-weight="600">I-49</text>
+  <g fill="#85692a"><circle cx="338" cy="296" r="9"/><circle cx="462" cy="272" r="9"/></g>
+  <g fill="#1d2024" font-size="16" font-weight="600"><text x="210" y="300">Shreveport</text><text x="478" y="258">Bossier City</text></g>
+  <g fill="#1d2024"><circle cx="560" cy="300" r="5"/><circle cx="540" cy="170" r="5"/><circle cx="330" cy="130" r="5"/><circle cx="210" cy="210" r="5"/><circle cx="175" cy="360" r="5"/><circle cx="330" cy="470" r="5"/><circle cx="600" cy="100" r="5"/><circle cx="260" cy="70" r="5"/></g>
+  <g fill="#3b4047" font-size="12.5"><text x="572" y="304">Haughton</text><text x="552" y="174">Benton</text><text x="342" y="134">Blanchard</text><text x="120" y="214">Mooringsport</text><text x="100" y="364">Greenwood</text><text x="342" y="474">Keithville</text><text x="612" y="104">Plain Dealing</text></g>
+  <text x="780" y="545" font-size="10" fill="#5b616a" text-anchor="end">Illustrative · not to scale</text>
+</svg>

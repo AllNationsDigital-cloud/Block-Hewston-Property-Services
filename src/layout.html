@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="robots" content="{{robots}}">
+<link rel="canonical" href="{{canonical}}">
+<meta name="theme-color" content="#1d2024">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{config.name}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:image" content="{{config.url}}/img/og-image.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{{schema}}</script>
+{{extraHead}}
+{{analytics}}
+</head>
+<body class="{{bodyClass}}">
+{{> sprite}}
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="wrap site-header__in">
+    <a class="logo" href="/" aria-label="{{config.name}} — home">
+      <span class="logo__mark" aria-hidden="true">B<i>&amp;</i>H</span>
+      <span class="logo__text"><b>Block &amp; Hewston</b><small>Property Services</small></span>
+    </a>
+    <nav id="site-nav" class="nav" aria-label="Primary">
+      <ul>
+        {{nav}}
+      </ul>
+      <a class="btn btn--primary nav__cta" href="/quote/">Get a quote</a>
+    </nav>
+    <a class="callbtn" href="tel:{{config.phoneTel}}" aria-label="Call {{config.phone}}">
+      <svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><span>Call</span>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="menu-btn__bars" aria-hidden="true"></span><span class="sr">Menu</span>
+    </button>
+  </div>
+</header>
+<main id="main">
+{{content}}
+</main>
+<footer class="site-footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <a class="logo logo--light" href="/" aria-label="{{config.name}} — home">
+        <span class="logo__mark" aria-hidden="true">B<i>&amp;</i>H</span>
+        <span class="logo__text"><b>Block &amp; Hewston</b><small>Property Services</small></span>
+      </a>
+      <p>Rent-ready, on schedule. Veteran-led turnover, cleanout, paint and make-ready for Shreveport–Bossier property owners.</p>
+      <p class="footer__parent">A <a href="{{config.parentUrl}}" rel="noopener">Block &amp; Hewston</a> company.</p>
+    </div>
+    <nav aria-label="Footer">
+      <h2 class="footer__h">Services</h2>
+      <ul>
+        <li><a href="/services/#turnover-cleaning">Turnover cleaning</a></li>
+        <li><a href="/services/#cleanouts">Junk removal &amp; cleanouts</a></li>
+        <li><a href="/services/#painting">Painting</a></li>
+        <li><a href="/services/#handyman">Minor repairs &amp; handyman</a></li>
+        <li><a href="/services/#carpet">Carpet cleaning coordination</a></li>
+        <li><a href="/services/#make-ready">Full make-ready</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Company">
+      <h2 class="footer__h">Company</h2>
+      <ul>
+        <li><a href="/pricing/">Pricing</a></li>
+        <li><a href="/property-managers/">For property managers</a></li>
+        <li><a href="/gallery/">Gallery</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/service-area/">Service area</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2 class="footer__h">Contact</h2>
+      <ul>
+        <li><a href="tel:{{config.phoneTel}}">{{config.phone}}</a></li>
+        <li><a href="mailto:{{config.email}}">{{config.email}}</a></li>
+        <li>{{config.hours}}</li>
+        <li>{{config.address}}</li>
+        <li><a class="footer__cta" href="/quote/">Request a quote →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <p>© {{year}} {{config.name}}. All rights reserved. Veteran-led · Shreveport, Louisiana.</p>
+    <p><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></p>
+  </div>
+</footer>
+<script src="/js/site.js" defer></script>
+</body>
+</html>

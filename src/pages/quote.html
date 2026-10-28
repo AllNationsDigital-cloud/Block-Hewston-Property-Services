@@ -1,0 +1,108 @@
+<!--{"title":"Request a Quote or Schedule a Walkthrough | Block & Hewston Property Services","description":"Request a turnover, cleanout, painting or make-ready quote in Shreveport-Bossier. Tell us the property, services and move-out date; we’ll schedule a walkthrough.","nav":"quote"}-->
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Request a quote</p>
+    <h1>Tell us about the unit.</h1>
+    <p class="lede">Four short steps. We’ll confirm a walkthrough and follow with a written, itemized quote.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap split split--wide-left">
+    <div class="form-panel" data-panel>
+      <form class="form" name="quote" method="post" action="/" enctype="multipart/form-data" data-form data-steps data-netlify="true" netlify-honeypot="bot-field" novalidate{{config.formEndpointAttr}}>
+        <input type="hidden" name="form-name" value="quote">
+        <p class="hp" aria-hidden="true"><label>Leave blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <ol class="progress" aria-label="Progress">
+          <li><span>1 · </span>Property</li><li><span>2 · </span>Services</li><li><span>3 · </span>Timing</li><li><span>4 · </span>Contact</li>
+        </ol>
+
+        <fieldset class="fieldset step is-active">
+          <legend>About the property</legend>
+          <fieldset class="field" data-group-required="Please choose a property type.">
+            <span class="lbl">Property type</span>
+            <div class="choices choices--2">
+              <label class="choice"><input type="radio" name="property_type" value="Single-family" required><span>Single-family home</span></label>
+              <label class="choice"><input type="radio" name="property_type" value="Duplex / small multifamily"><span>Duplex / small multifamily</span></label>
+              <label class="choice"><input type="radio" name="property_type" value="Apartment community"><span>Apartment community</span></label>
+              <label class="choice"><input type="radio" name="property_type" value="Commercial / other"><span>Commercial / other</span></label>
+            </div>
+            <p class="field__error" id="e-ptype" role="alert"></p>
+          </fieldset>
+          <div class="field"><label for="street">Property address</label><input id="street" name="street" autocomplete="street-address" required data-label="the property address" placeholder="Street address"><p class="field__error" id="e-street" role="alert"></p></div>
+          <div class="row row--3">
+            <div class="field"><label for="city">City</label><input id="city" name="city" required data-label="the city" value="Shreveport"><p class="field__error" id="e-city" role="alert"></p></div>
+            <div class="field"><label for="state">State</label><input id="state" name="state" value="LA" readonly></div>
+            <div class="field"><label for="zip">ZIP</label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" required pattern="[0-9]{5}" title="Enter a 5-digit ZIP code." data-label="a ZIP code"><p class="field__error" id="e-zip" role="alert"></p></div>
+          </div>
+          <div class="field"><label for="units">Number of units <span class="hint">(units needing work)</span></label><input id="units" name="units" type="number" inputmode="numeric" min="1" max="500" required data-label="the number of units"><p class="field__error" id="e-units" role="alert"></p></div>
+          <div class="form__nav"><button class="btn btn--primary" type="button" data-next>Next: services</button></div>
+        </fieldset>
+
+        <fieldset class="fieldset step">
+          <legend>Services needed</legend>
+          <fieldset class="field" data-group-required="Select at least one service, or “Not sure”.">
+            <span class="lbl">Select all that apply</span>
+            <div class="choices choices--2">
+              <label class="choice choice--box"><input type="checkbox" name="services" value="Turnover cleaning"><span>Turnover cleaning</span></label>
+              <label class="choice choice--box"><input type="checkbox" name="services" value="Junk removal / cleanout"><span>Junk removal / cleanout</span></label>
+              <label class="choice choice--box"><input type="checkbox" name="services" value="Painting"><span>Interior / exterior painting</span></label>
+              <label class="choice choice--box"><input type="checkbox" name="services" value="Minor repairs / handyman"><span>Minor repairs / handyman</span></label>
+              <label class="choice choice--box"><input type="checkbox" name="services" value="Carpet cleaning coordination"><span>Carpet cleaning coordination</span></label>
+              <label class="choice choice--box"><input type="checkbox" name="services" value="Full make-ready"><span>Full make-ready</span></label>
+              <label class="choice choice--box"><input type="checkbox" name="services" value="Not sure"><span>Not sure. Advise me.</span></label>
+            </div>
+            <p class="field__error" id="e-services" role="alert"></p>
+          </fieldset>
+          <div class="field"><label for="notes">Anything we should know? <span class="hint">(optional)</span></label><textarea id="notes" name="notes" placeholder="Condition, pets, access, specific repairs…"></textarea></div>
+          <p class="note">We handle projects under $7,500. Licensed plumbing, electrical and HVAC are referred to licensed trades.</p>
+          <div class="form__nav"><button class="btn btn--outline" type="button" data-prev>Back</button><button class="btn btn--primary" type="button" data-next>Next: timing</button></div>
+        </fieldset>
+
+        <fieldset class="fieldset step">
+          <legend>Timing &amp; photos</legend>
+          <div class="row row--2">
+            <div class="field"><label for="moveout">Move-out / target date</label><input id="moveout" name="move_out_date" type="date" data-min-today required data-label="a move-out date"><p class="field__error" id="e-moveout" role="alert"></p></div>
+            <div class="field"><label for="flex">Flexibility</label><select id="flex" name="flexibility" required data-label="your flexibility"><option value="">Choose…</option><option>Fixed date</option><option>A few days either way</option><option>Flexible</option><option>Already vacant. ASAP</option></select><p class="field__error" id="e-flex" role="alert"></p></div>
+          </div>
+          <div class="field">
+            <label for="photos">Photos <span class="hint">(optional, up to 10 images, 10 MB each)</span></label>
+            <div class="file"><input id="photos" name="photos" type="file" accept="image/*" multiple><ul data-file-list></ul></div>
+            <p class="field__error" id="e-photos" role="alert"></p>
+          </div>
+          <div class="form__nav"><button class="btn btn--outline" type="button" data-prev>Back</button><button class="btn btn--primary" type="button" data-next>Next: contact</button></div>
+        </fieldset>
+
+        <fieldset class="fieldset step">
+          <legend>How do we reach you?</legend>
+          <div class="row row--2">
+            <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required data-label="your name"><p class="field__error" id="e-name" role="alert"></p></div>
+            <div class="field"><label for="company">Company <span class="hint">(optional)</span></label><input id="company" name="company" autocomplete="organization"></div>
+          </div>
+          <div class="row row--2">
+            <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required pattern="[0-9\(\)+\s.\-]{10,}" title="Enter a phone number with area code." data-label="a phone number"><p class="field__error" id="e-phone" role="alert"></p></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required data-label="your email"><p class="field__error" id="e-email" role="alert"></p></div>
+          </div>
+          <div class="field"><label for="pref">Best way to reach you</label><select id="pref" name="contact_preference"><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
+          <div class="field"><label class="consent"><input type="checkbox" name="consent" required data-err-msg="Please agree so we can contact you about this request."><span>I agree to be contacted about this request. See our <a href="/privacy/">privacy policy</a>.</span></label><p class="field__error" id="e-consent" role="alert"></p></div>
+          <div class="form__alert" role="alert" tabindex="-1">We couldn’t send your request. Please try again, or call <a href="tel:{{config.phoneTel}}">{{config.phone}}</a> or email <a href="mailto:{{config.email}}">{{config.email}}</a>.</div>
+          <div class="form__nav"><button class="btn btn--outline" type="button" data-prev>Back</button><button class="btn btn--primary" type="submit">Request my quote</button></div>
+        </fieldset>
+      </form>
+
+      <div class="success" role="status">
+        <div class="success__icon"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></div>
+        <h2>Thank you, <span data-echo-name>there</span>. Request received.</h2>
+        <p class="lede">We’ll be in touch within [1 business day] to confirm your walkthrough.</p>
+        <ol class="next-list"><li><div><b>Confirm.</b> We call or text to set a walkthrough time.</div></li><li><div><b>Walk.</b> We scope the unit against your move-out date.</div></li><li><div><b>Quote.</b> A written, itemized quote follows.</div></li></ol>
+        <p>Need it sooner? Call <a href="tel:{{config.phoneTel}}">{{config.phone}}</a> ({{config.hours}}).</p>
+        <a class="btn btn--outline" href="/">Back to home</a>
+      </div>
+    </div>
+
+    <aside class="reveal hide-on-success">
+      <h2>What happens next</h2>
+      <ol class="next-list"><li><div><b>We confirm</b> a walkthrough time, usually within one business day.</div></li><li><div><b>We scope</b> the unit against your move-out date.</div></li><li><div><b>You get a written quote</b> with itemized pricing. Final quote after walkthrough.</div></li></ol>
+      <div class="callout"><b>Prefer to talk?</b> Call <a href="tel:{{config.phoneTel}}">{{config.phone}}</a><br>{{config.hours}}</div>
+    </aside>
+  </div>
+</section>
