@@ -50,7 +50,8 @@ Notes: photo attachments are limited by FormSubmit (about 5 MB total on the free
 Paste your snippet (Plausible, GA4, etc.) into `"analytics"` in `site.config.json`. The forms fire `plausible('Form Submit')` / `gtag('event','generate_lead')` if those exist.
 
 ## Images
-- The site has no photos yet. Add real ones as needed under `src/static/img/` with descriptive alt text.
+- `src/static/img/services/*.jpg` are the hover images for the six service tiles. They are **placeholders** (4 AI-generated, upscaled; carpet and make-ready are crops). Replace each with a real job photo of the same name, about 1200×800 px. `hero.jpg` is the supplied photo.
+- The site has no other photos yet. Add real ones as needed under `src/static/img/` with descriptive alt text.
 - `logo-dark/light/gold.png` come from the supplied B&H logo (transparent PNGs). `og-image.png`, `apple-touch-icon.png` and `favicon.png` are built from it; replace with final artwork using the same names (a vector SVG logo would be sharper).
 - `service-area-map.svg` is illustrative. To use a live map instead, replace the `<img>` in `service-area.html` with a Google Maps embed `<iframe title="Map of service area" loading="lazy" …>`.
 

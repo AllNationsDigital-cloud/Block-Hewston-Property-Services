@@ -11,6 +11,22 @@
     nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
   }
 
+  /* Hero image: zoom/drift with scroll */
+  const heroBg = $('.hero__bg');
+  if (heroBg && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let tick = false;
+    const upd = () => { tick = false; const h = heroBg.parentElement.offsetHeight || 1; heroBg.style.setProperty('--p', Math.min(1, Math.max(0, scrollY / h)).toFixed(3)); };
+    addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+  }
+
+  /* Process rail: animate when scrolled into view */
+  const flow = $('[data-flow]');
+  if (flow) {
+    if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { flow.classList.add('in'); io.disconnect(); } }), { threshold: .35 }); io.observe(flow); }
+    else flow.classList.add('in');
+  }
+
   /* Forms: validation, optional multi-step, submit */
   const MAX_FILES = 10, MAX_MB = 10;
   const label = (el) => el.dataset.label || 'this field';
