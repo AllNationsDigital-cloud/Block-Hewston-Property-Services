@@ -357,11 +357,8 @@ html{scroll-padding-top:calc(var(--hdr) + 8px)}
 .flow li{counter-increment:f;position:relative;background:var(--night);color:#cfc6b0;border:0;padding:1.5rem 1.5rem 1.4rem}
 .flow li::before{content:counter(f,upper-roman);color:var(--gold-bright)}
 .flow b{color:var(--ivory)}.flow span{color:#cfc6b0;font-style:italic}
-.flow__check{position:absolute;right:1.1rem;top:1.1rem;width:2rem;height:2rem;fill:none;stroke:var(--gold-bright);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:28;stroke-dashoffset:28}
 .js .flow li{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i)*.85s)}
 .js .flow.in li{opacity:1;transform:none}
-.flow.in .flow__check{stroke-dashoffset:0;transition:stroke-dashoffset .9s ease 3.3s}
-html:not(.js) .flow__check{stroke-dashoffset:0}
 @media(min-width:800px){
   .flow{padding-top:2.75rem;gap:1.25rem}
   .flow::before,.flow::after{content:"";position:absolute;left:0;right:0;top:.6rem;height:2px}
@@ -396,3 +393,9 @@ html:not(.js) .flow__check{stroke-dashoffset:0}
 .section--dark .about__quote{color:var(--ivory)}
 .section--dark h2 em{font-style:normal}
 @media(prefers-reduced-motion:reduce){.hero__bg{animation:none!important;transform:none!important}.tiles>*::before{transition:none!important}}
+
+/* process icons: draw themselves in */
+.flow__icon{position:absolute;right:1.2rem;top:1.2rem;width:2.9rem;height:2.9rem;fill:none;stroke:var(--gold-bright);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease)}
+.flow li:hover .flow__icon{transform:translateY(-3px) scale(1.08)}
+.js .flow__icon path{stroke-dasharray:1;stroke-dashoffset:1}
+.js .flow.in .flow__icon path{stroke-dashoffset:0;transition:stroke-dashoffset 1.3s ease calc(var(--i)*.85s + .5s)}
