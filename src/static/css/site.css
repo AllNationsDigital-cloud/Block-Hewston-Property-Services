@@ -215,7 +215,7 @@ tbody th{color:var(--ink);font-weight:600}td.rate{font-weight:600;color:var(--in
 
 /* ---- Home: focal hero, big tiles, process ---- */
 .hero--dark{position:relative;background:var(--night);color:#d9d2c0;border:0;padding:0;display:flex;flex-direction:column;min-height:min(44rem,calc(100svh - var(--hdr)));overflow:hidden}
-.hero--dark{background:var(--night) url(/img/hero.jpg) 20% center/cover no-repeat}
+.hero--dark{background:var(--night)}
 .hero--dark::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,19,18,.6),rgba(19,19,18,.88))}
 @media(min-width:800px){.hero--dark::before{background:linear-gradient(90deg,rgba(19,19,18,.05) 0%,rgba(19,19,18,.5) 42%,rgba(19,19,18,.9) 100%)}}
 .hero--dark .wrap{position:relative;width:100%}
@@ -280,3 +280,15 @@ html{scroll-padding-top:calc(var(--hdr) + 8px)}
 .hero__facts{justify-content:flex-end;font-weight:600;color:#e6dfcd}
 @media(min-width:800px){.hero__in{padding-left:42%}}
 .hero--dark h1{font-size:clamp(3rem,7.2vw,6.25rem)}
+
+/* Hero image: zoomed out a bit, slow zoom-out on load; text fades up */
+.hero__bg{position:absolute;inset:0;z-index:0;background:url(/img/hero.jpg) 30% center/cover no-repeat;transform-origin:25% 50%;animation:heroZoom 2.8s cubic-bezier(.16,1,.3,1) both}
+@media(min-width:800px){.hero__bg{background-size:auto 100%;background-position:left center;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 62%,transparent 91%);mask-image:linear-gradient(90deg,#000 0,#000 62%,transparent 91%)}}
+.hero--dark::before{z-index:1}
+.hero--dark .wrap{z-index:2}
+.hero--dark h1 em{font-style:normal}
+@keyframes heroZoom{from{transform:scale(1.18)}to{transform:scale(1)}}
+@keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero__in>*,.hero__facts{animation:heroUp 1s cubic-bezier(.16,1,.3,1) both}
+.hero__in h1{animation-delay:.25s}.hero__in .lede{animation-delay:.45s}.hero__in .btns{animation-delay:.65s}.hero__facts{animation-delay:.85s}
+@media(prefers-reduced-motion:reduce){.hero__bg,.hero__in>*,.hero__facts{animation:none!important}}
