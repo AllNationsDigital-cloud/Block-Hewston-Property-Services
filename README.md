@@ -7,7 +7,7 @@ site.config.json     phone, email, hours, address, nav, analytics snippet, form 
 build.mjs            node build.mjs  ->  public/   (no npm install needed)
 src/layout.html      <head> (SEO/OG/JSON-LD), header, footer
 src/partials/        cta.html (final CTA band), sprite.html (icons)
-src/pages/*.html     one file per page; first line is a <!--{meta}--> JSON header
+src/pages/index.html  the whole site (one page, anchored sections); 404.html
 src/static/          css/site.css, js/site.js, img/, favicon, _headers (copied as-is)
 tools/               local preview server
 ```
@@ -34,10 +34,10 @@ After you pick the domain, set `"url"` in `site.config.json` (used for canonical
 
 ## Editing content
 - **Contact details, hours, nav, analytics:** `site.config.json`.
-- **Copy:** edit the HTML in `src/pages/`. Tokens like `{{config.phone}}` are filled at build time.
+- **Copy:** edit the sections in `src/pages/index.html`. Tokens like `{{config.phone}}` are filled at build time.
 - **Colors / fonts:** CSS variables at the top of `src/static/css/site.css`.
-- **Per-page SEO:** the JSON header on line 1 of each page (`title`, `description`).
-- **FAQ:** add a `<details><summary>…</summary><div class="ans">…</div></details>`. FAQPage schema is generated automatically.
+- **SEO:** the JSON header on line 1 of `index.html` (`title`, `description`).
+- **FAQ:** add a `<details class="faq-item"><summary>…</summary><div class="ans">…</div></details>`. FAQPage schema is generated automatically.
 
 ## Forms (quote + contact)
 Both forms post to [FormSubmit](https://formsubmit.co), which emails each submission to `service@blockandhewston.com` (the address in `site.config.json`). No account or API key.
@@ -60,7 +60,7 @@ Find the placeholders: `grep -rn "\[[A-Z]" src/pages site.config.json`
 - [ ] Phone: **443 is a Maryland area code.** A local 318 number (even a forwarding line) helps local trust and SEO. Update `site.config.json`.
 - [ ] Business days (Mon–Fri assumed; schema also assumes Mon–Fri 8–5)
 - [ ] Insurance carrier/limits and COI process; the "Insured" claim must be true at launch
-- [ ] Net terms, portfolio discount percentages, deposit/payment/cancellation policies
+- [ ] Payment methods and cancellation policy (no prices are shown on the site by design)
 - [ ] Turnaround times shown (24–48 hrs, 1–2 days, 3–7 days, etc.) are realistic defaults; confirm they match your capacity
 - [ ] Carpet-cleaning partner arrangement and how it is billed
 - [ ] Outer-parish travel radius

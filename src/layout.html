@@ -30,12 +30,12 @@
 <a class="skip" href="#main">Skip to main content</a>
 <header class="site-header">
   <div class="wrap bar">
-    <a class="logo" href="/" aria-label="{{config.name}}, home"><img src="/img/logo-dark.png" width="600" height="274" alt="Block &amp; Hewston"><span>Property Services</span></a>
+    <a class="logo" href="{{config.parentUrl}}" rel="noopener" aria-label="Block &amp; Hewston (main site)"><img src="/img/logo-dark.png" width="600" height="274" alt="Block &amp; Hewston"><span>Property Services</span></a>
     <nav id="site-nav" class="nav" aria-label="Primary">
       <ul>
         {{nav}}
       </ul>
-      <a class="btn btn--dark nav__cta" href="/quote/">Get a quote</a>
+      <a class="btn btn--dark nav__cta" href="/#quote">Get a quote</a>
     </nav>
     <a class="callbtn" href="tel:{{config.phoneTel}}" aria-label="Call {{config.phone}}">Call</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="menu-btn__bars" aria-hidden="true"></span><span class="sr">Menu</span></button>
@@ -44,16 +44,17 @@
 <main id="main">
 {{content}}
 </main>
-<footer class="site-footer">
+<footer class="site-footer" id="contact">
   <div class="wrap foot">
     <div>
-      <img src="/img/logo-gold.png" width="600" height="274" alt="Block &amp; Hewston" class="foot__logo">
-      <p>Property Services · Shreveport, Louisiana<br>A <a href="{{config.parentUrl}}" rel="noopener">Block &amp; Hewston</a> company</p>
+      <a href="{{config.parentUrl}}" rel="noopener" aria-label="Block &amp; Hewston (main site)"><img src="/img/logo-gold.png" width="600" height="274" alt="Block &amp; Hewston" class="foot__logo"></a>
+      <p><b>Block &amp; Hewston LLC</b><br>{{config.name}}<br>Shreveport, Louisiana</p>
     </div>
-    <p><a href="tel:{{config.phoneTel}}">{{config.phone}}</a><br><a href="mailto:{{config.email}}">{{config.email}}</a><br>{{config.hours}}</p>
-    <p><a href="/services/">Services</a><br><a href="/pricing/">Pricing</a><br><a href="/service-area/">Service area</a><br><a href="/faq/">FAQ</a></p>
-    <p><a href="/privacy/">Privacy</a><br><a href="/terms/">Terms</a><br>© {{year}}</p>
+    <p><a href="tel:{{config.phoneTel}}">{{config.phone}}</a><br><a href="mailto:{{config.email}}">{{config.email}}</a><br>{{config.hours}}<br>{{config.address}}</p>
+    <p><a href="/#services">Services</a><br><a href="/#managers">Property managers</a><br><a href="/#area">Service area</a><br><a href="/#quote">Get a quote</a></p>
+    <p><a href="/#legal">Privacy &amp; terms</a><br><a href="{{config.parentUrl}}" rel="noopener">blockandhewston.com</a></p>
   </div>
+  <div class="wrap foot__legal"><p>© {{year}} Block &amp; Hewston LLC. All rights reserved. {{config.name}} is a Block &amp; Hewston LLC company.</p></div>
 </footer>
 <script src="/js/site.js?v={{jsv}}" defer></script>
 </body>

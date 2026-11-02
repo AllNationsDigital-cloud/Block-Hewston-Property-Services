@@ -50,7 +50,6 @@ function schema() {
     image: `${config.url}/img/og-image.png`,
     logo: `${config.url}/img/logo-dark.png`,
     description: 'Veteran-led rental turnover cleaning, cleanouts, painting, minor repairs and make-ready for property managers, landlords and investors in Shreveport–Bossier, Louisiana.',
-    priceRange: '$$',
     address: { '@type': 'PostalAddress', addressLocality: 'Shreveport', addressRegion: 'LA', addressCountry: 'US' },
     openingHoursSpecification: [{
       '@type': 'OpeningHoursSpecification',
@@ -63,7 +62,7 @@ function schema() {
       { '@type': 'AdministrativeArea', name: 'Caddo Parish, LA' },
       { '@type': 'AdministrativeArea', name: 'Bossier Parish, LA' }
     ],
-    parentOrganization: { '@type': 'Organization', name: 'Block & Hewston', url: config.parentUrl },
+    parentOrganization: { '@type': 'Organization', name: 'Block & Hewston', legalName: config.legalName, url: config.parentUrl },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Property services',
@@ -75,7 +74,7 @@ function schema() {
 }
 
 function faqSchema(html) {
-  const items = [...html.matchAll(/<details[^>]*>\s*<summary[^>]*>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)]
+  const items = [...html.matchAll(/<details class="faq-item">\s*<summary[^>]*>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)]
     .map((m) => ({
       '@type': 'Question', name: stripTags(m[1]),
       acceptedAnswer: { '@type': 'Answer', text: stripTags(m[2]) }
