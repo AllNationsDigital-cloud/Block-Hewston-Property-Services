@@ -294,3 +294,12 @@ html{scroll-padding-top:calc(var(--hdr) + 8px)}
 @media(prefers-reduced-motion:reduce){.hero__bg,.hero__in>*,.hero__facts{animation:none!important}}
 /* Hero text to the far right edge */
 .hero--dark .wrap{max-width:none;padding-right:clamp(1.25rem,5vw,5rem)}
+
+/* Header logo: two separate links */
+.logo{gap:.8rem}
+.logo__mark{display:block;line-height:0}
+.logo__label{font:500 .95rem/1 var(--caps);font-variant:small-caps;text-transform:lowercase;letter-spacing:.2em;padding-left:.8rem;border-left:1px solid var(--gold);color:var(--ink);text-decoration:none}
+.logo__label:hover{color:var(--gold-text)}
+.logo span{display:none}
+/* Hero description on one line (desktop) */
+@media(min-width:900px){.hero--dark .hero__in .lede{max-width:none;white-space:nowrap;font-size:clamp(1.2rem,1.9vw,1.65rem)}}
