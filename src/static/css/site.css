@@ -303,3 +303,30 @@ html{scroll-padding-top:calc(var(--hdr) + 8px)}
 .logo span{display:none}
 /* Hero description on one line (desktop) */
 @media(min-width:900px){.hero--dark .hero__in .lede{max-width:none;white-space:nowrap;font-size:clamp(1.2rem,1.9vw,1.65rem)}}
+
+/* Bigger, easier-to-read header */
+:root{--hdr:76px}
+.logo img{height:34px}
+.logo__label{font-size:1.2rem;letter-spacing:.18em;font-weight:600;padding-left:1rem}
+.callbtn{font-size:1.2rem;font-weight:600;padding:.8rem 1.3rem;min-height:50px}
+.menu-btn{width:50px;height:50px}
+.nav li a{font-size:1.4rem;font-weight:600;padding:1.1rem 0}
+@media(min-width:1000px){
+  :root{--hdr:96px}
+  .logo img{height:44px}
+  .logo__label{font-size:1.4rem}
+  .nav,.nav.is-open{gap:2.25rem}
+  .nav li a{font-size:1.5rem;letter-spacing:.14em;padding:.4rem 0}
+  .nav__cta{font-size:1.3rem;font-weight:600;padding:1.15rem 2rem;min-height:58px}
+}
+.nav li a{font-size:1.65rem;letter-spacing:.1em}
+.callbtn{font-size:1.45rem}
+.nav__cta{font-size:1.5rem}
+.logo__label{font-size:1.35rem}
+@media(min-width:1000px){
+  .nav li a{font-size:1.9rem;letter-spacing:.1em}
+  .nav__cta{font-size:1.65rem;padding:1.1rem 2.1rem}
+  .logo__label{font-size:1.6rem}
+  .logo img{height:48px}
+  :root{--hdr:100px}
+}

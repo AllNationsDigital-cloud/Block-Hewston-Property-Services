@@ -13,37 +13,6 @@
   "analytics": "",
   "nav": [
     {
-      "href": "/#services",
-      "label": "Services",
-      "key": "services"
-    },
-    {
-      "href": "/#process",
-      "label": "How it works",
-      "key": "process",
-      "more": true
-    },
-    {
-      "href": "/#managers",
-      "label": "Property Managers",
-      "key": "managers"
-    },
-    {
-      "href": "/#area",
-      "label": "Service Area",
-      "key": "area"
-    },
-    {
-      "href": "/#about",
-      "label": "About",
-      "key": "about"
-    },
-    {
-      "href": "/#faq",
-      "label": "FAQ",
-      "key": "faq"
-    },
-    {
       "href": "/#contact",
       "label": "Contact",
       "key": "contact"
