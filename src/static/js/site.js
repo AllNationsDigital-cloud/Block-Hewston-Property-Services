@@ -124,6 +124,11 @@
         if (window.plausible) window.plausible('Form Submit', { props: { form: form.name } });
         if (window.gtag) window.gtag('event', 'generate_lead', { form: form.name });
       } catch (err) {
+        const mt = alertBox && $('[data-mailto]', alertBox);
+        if (mt && form.dataset.fallback) {
+          const lines = [...fd].filter(([k, v]) => !k.startsWith('_') && typeof v === 'string' && v.trim()).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`);
+          mt.href = `mailto:${form.dataset.fallback}?subject=${encodeURIComponent('Quote request')}&body=${encodeURIComponent(lines.join('\n'))}`;
+        }
         alertBox?.classList.add('is-on'); alertBox?.focus?.();
         submit.disabled = false; submit.textContent = orig;
       }

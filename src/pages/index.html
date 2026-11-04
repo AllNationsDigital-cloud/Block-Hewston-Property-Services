@@ -91,7 +91,7 @@
     <div class="sec-head"><h2>Request a quote</h2></div>
     <div class="split--form">
       <div data-panel>
-      <form class="form" name="quote" method="post" action="https://formsubmit.co/ajax/{{config.formEmail}}" enctype="multipart/form-data" data-form data-steps novalidate>
+      <form class="form" name="quote" method="post" action="https://formsubmit.co/ajax/{{config.formEmail}}" enctype="multipart/form-data" data-form data-steps data-fallback="{{config.formEmail}}" novalidate>
         <input type="hidden" name="_subject" value="New quote request | Block &amp; Hewston Property Services">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
@@ -168,7 +168,7 @@
           </div>
           <div class="field"><label for="pref">Best way to reach you</label><select id="pref" name="contact_preference"><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
           <div class="field"><label class="consent"><input type="checkbox" name="consent" required data-err-msg="Please agree so we can contact you about this request."><span>I agree to be contacted about this request. See our <a href="#legal">privacy policy</a>.</span></label><p class="field__error" id="e-consent" role="alert"></p></div>
-          <div class="form__alert" role="alert" tabindex="-1">We couldn’t send your request. Please try again, or call <a href="tel:{{config.phoneTel}}">{{config.phone}}</a> or email <a href="mailto:{{config.email}}">{{config.email}}</a>.</div>
+          <div class="form__alert" role="alert" tabindex="-1">We couldn’t send your request automatically. <a data-mailto href="mailto:{{config.formEmail}}">Email it to us instead</a> (your answers are filled in), or call <a href="tel:{{config.phoneTel}}">{{config.phone}}</a>.</div>
           <div class="form__nav"><button class="btn btn--line" type="button" data-prev>Back</button><button class="btn btn--dark" type="submit">Request my quote</button></div>
         </fieldset>
       </form>
