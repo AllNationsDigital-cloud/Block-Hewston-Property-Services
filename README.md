@@ -55,19 +55,14 @@ Paste your snippet (Plausible, GA4, etc.) into `"analytics"` in `site.config.jso
 - `logo-dark/light/gold.png` come from the supplied B&H logo (transparent PNGs). `og-image.png`, `apple-touch-icon.png` and `favicon.png` are built from it; replace with final artwork using the same names (a vector SVG logo would be sharper).
 - `service-area-map.svg` is illustrative. To use a live map instead, replace the `<img>` in `service-area.html` with a Google Maps embed `<iframe title="Map of service area" loading="lazy" …>`.
 
-## Pre-launch checklist: things to fill in or confirm
-Find the placeholders: `grep -rn "\[[A-Z]" src/pages site.config.json`
-- [ ] Street address, ZIP, founding year, founder/team story (About)
-- [ ] Phone: **443 is a Maryland area code.** A local 318 number (even a forwarding line) helps local trust and SEO. Update `site.config.json`.
-- [ ] Business days (Mon–Fri assumed; schema also assumes Mon–Fri 8–5)
-- [ ] Insurance carrier/limits and COI process; the "Insured" claim must be true at launch
-- [ ] Payment methods and cancellation policy (no prices are shown on the site by design)
-- [ ] Turnaround times shown (24–48 hrs, 1–2 days, 3–7 days, etc.) are realistic defaults; confirm they match your capacity
-- [ ] Carpet-cleaning partner arrangement and how it is billed
-- [ ] Outer-parish travel radius
-- [ ] Real before/after photos and testimonials (none are included, and none are invented)
-- [ ] Privacy Policy and Terms: have a Louisiana attorney review. Also confirm with counsel or the Louisiana State Licensing Board for Contractors that your service mix and the $7,500 scope cap need no license or registration. The site never claims "no license required."
-- [ ] Set `"url"` to the final domain; submit `/sitemap.xml` to Google Search Console; create/claim a Google Business Profile (the biggest local-SEO lever)
+## Before you go live
+No bracketed placeholders remain in the page text. Things only you can confirm:
+- [ ] The privacy and terms text on the page is general wording. Have a Louisiana attorney review it, and confirm with counsel or the Louisiana State Licensing Board for Contractors that your service mix needs no license or registration.
+- [ ] Insurance: the page says you're insured and can provide a certificate on request. That must be true at launch.
+- [ ] Activate the form: submit one test quote on the live site and click the activation email sent to `service@blockandhewston.com`.
+- [ ] Replace the service hover images in `src/static/img/services/` with real job photos.
+- [ ] Phone: 443 is a Maryland area code. A local 318 number helps local trust and SEO (`site.config.json`).
+- [ ] Submit `/sitemap.xml` to Google Search Console and claim a Google Business Profile.
 
 ## Quality notes
 - Semantic landmarks, skip link, visible focus, keyboard-operable menu/slider/form, form errors announced via `role="alert"`, color contrast designed for WCAG AA, `prefers-reduced-motion` respected. Run Lighthouse and axe after you swap in real content.
