@@ -40,7 +40,7 @@ After you pick the domain, set `"url"` in `site.config.json` (used for canonical
 - **FAQ:** add a `<details class="faq-item"><summary>…</summary><div class="ans">…</div></details>`. FAQPage schema is generated automatically.
 
 ## Forms (quote + contact)
-Both forms post to [FormSubmit](https://formsubmit.co), which emails each submission to `service@blockandhewston.com` (the address in `site.config.json`). No account or API key.
+Both forms post to [FormSubmit](https://formsubmit.co), which emails each submission to `contact@blockandhewston.com` (`formEmail` in `site.config.json`). No account or API key.
 
 **One-time activation:** after deploying, submit a test quote from the live site. FormSubmit emails that inbox an activation link; click it once and all later submissions arrive as normal emails. Check spam if it doesn't show.
 
@@ -59,7 +59,7 @@ Paste your snippet (Plausible, GA4, etc.) into `"analytics"` in `site.config.jso
 No bracketed placeholders remain in the page text. Things only you can confirm:
 - [ ] The privacy and terms text on the page is general wording. Have a Louisiana attorney review it, and confirm with counsel or the Louisiana State Licensing Board for Contractors that your service mix needs no license or registration.
 - [ ] Insurance: the page says you're insured and can provide a certificate on request. That must be true at launch.
-- [ ] Activate the form: submit one test quote on the live site and click the activation email sent to `service@blockandhewston.com`.
+- [ ] Activate the form: submit one test quote on the live site and click the activation email sent to `contact@blockandhewston.com`.
 - [ ] Replace the service hover images in `src/static/img/services/` with real job photos.
 - [ ] Phone: 443 is a Maryland area code. A local 318 number helps local trust and SEO (`site.config.json`).
 - [ ] Submit `/sitemap.xml` to Google Search Console and claim a Google Business Profile.
