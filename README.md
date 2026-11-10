@@ -8,7 +8,7 @@ src/app/                routes: / , /property-services , /rehab-restoration , /d
 src/components/         Header, Footer, Button, Section, PageHero, CtaBand, Reveal (scroll motion),
                         PhotoSlot (labelled image placeholders), StateMap (TX + LA), ContactForm
 src/app/globals.css     design tokens (colors, fonts) and the reveal motion
-functions/api/contact.ts  serverless form handler  <-- TODO: email provider
+functions/api/contact.ts  serverless form handler (FormSubmit by default, Resend optional)
 public/og.png           social share image (replace with final artwork)
 ```
 
@@ -32,10 +32,16 @@ Create a Pages project from the Git repo with:
 The `functions/` folder deploys automatically and serves `POST /api/contact`.
 Set `site.url` in `src/content/site.ts` to the final domain (used for canonicals, sitemap, Open Graph, schema).
 
-## Finish the contact form (required before launch)
-`functions/api/contact.ts` validates the submission, drops bot submissions via a honeypot, then calls `sendEmail()`, which is a **stub that throws until you implement it**. Until then the endpoint returns 503 and the form shows a prefilled `mailto:` link, so no lead is lost.
+## Contact form (works out of the box)
+The form posts to `/api/contact`, a Cloudflare Pages Function (`functions/api/contact.ts`). It validates the submission, blocks bots with a honeypot, and emails the lead to `nico@blockdevelopmentgroup.com` (change with the `CONTACT_TO` variable).
 
-To go live: pick a provider (Resend, Postmark, Cloudflare Email Service, or a CRM webhook), implement `sendEmail()` (a Resend example is in the comments), and add the variables in Pages > Settings > Variables and Secrets: `CONTACT_TO`, `CONTACT_FROM`, plus the provider key (for example `RESEND_API_KEY`). Send a test from the live site.
+**One-time activation (required):** delivery uses [FormSubmit](https://formsubmit.co), which needs no account or API key. After the site is live, submit one test request. FormSubmit emails `nico@blockdevelopmentgroup.com` an activation link; click it once (check spam). Every later lead arrives as a normal email, with the visitor's address as Reply-To.
+
+Until activated (or if the mail service is ever down), the endpoint returns 503 and the form shows a prefilled `mailto:` link, so no lead is lost.
+
+**Optional upgrade, branded sender:** in Cloudflare Pages > Settings > Variables and Secrets set `RESEND_API_KEY` (secret) and `CONTACT_FROM` (a sender verified at resend.com, for example `Block Development Group <web@blockdevelopmentgroup.com>`). When both exist, Resend is used instead of FormSubmit.
+
+Test locally in the real Workers runtime: `npm run preview` (builds, then serves `out/` plus the function at http://localhost:8788). Set `FORMSUBMIT_URL` to a local mock to avoid sending real mail.
 
 ## Replace before launch
 - **Photography:** every image is a labelled placeholder (`PhotoSlot`). Notes for the shots you need are in `photos` in `src/content/site.ts`. To use a real photo, swap the `PhotoSlot` for a `next/image` (or a CSS background) in the page file.

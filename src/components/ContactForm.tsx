@@ -75,7 +75,7 @@ export default function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div ref={successRef} tabIndex={-1} role="status" className="border border-gold/50 bg-graphite p-8 sm:p-10 focus:outline-none">
+      <div ref={successRef} tabIndex={-1} role="status" className="scroll-mt-32 border border-gold/50 bg-graphite p-8 sm:p-10 focus:outline-none">
         <h2 className="display text-4xl">{f.successTitle}</h2>
         <div className="rule-gold my-5" />
         <p className="text-lg text-steel">{f.successBody}</p>
