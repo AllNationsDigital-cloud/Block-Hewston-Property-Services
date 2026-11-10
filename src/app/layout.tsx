@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from 'next';
-import '@fontsource/zilla-slab/600.css';
-import '@fontsource/zilla-slab/700.css';
-import '@fontsource-variable/inter';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/700.css';
+import '@fontsource/cormorant-garamond/500-italic.css';
+import '@fontsource/cormorant-sc/500.css';
+import '@fontsource/cormorant-sc/600.css';
 import './globals.css';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -32,7 +36,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-export const viewport: Viewport = { themeColor: '#0b0b0c', colorScheme: 'dark' };
+export const viewport: Viewport = { themeColor: '#f2eada' };
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -64,10 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Analytics placeholder: paste your snippet here (Plausible, GA4, Cloudflare Web Analytics). */}
       </head>
       <body>
-        <a
-          href="#main"
-          className="fixed left-4 top-4 z-[60] -translate-y-24 bg-gold px-4 py-3 text-sm font-semibold text-ink focus:translate-y-0"
-        >
+        <a href="#main" className="skip">
           Skip to main content
         </a>
         <Header />

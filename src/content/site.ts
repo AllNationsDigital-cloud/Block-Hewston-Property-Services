@@ -32,18 +32,16 @@ export const cta = {
   investor: { label: 'Partner With Us', href: '/contact/?type=investor' },
 };
 
-/** Marked clearly on screen as placeholders. Replace with real photography. */
-export const photos = {
-  hero: 'Dark, high-contrast skyline or steel framing at dusk. Wide, 16:9.',
-  restore: 'Interior in mid-rehab: exposed framing, work light, concrete floor.',
-  reposition: 'Weathered multifamily exterior, low sun, hard shadows.',
-  develop: 'Site with rebar and formwork, skyline behind.',
-  services: 'Crew at work in a vacant unit. Documentary, desaturated.',
-  rehab: 'Before-and-after pair: stripped interior and finished interior.',
-  development: 'Aerial of an infill parcel at dusk with the city beyond.',
-  markets: 'Skyline silhouette: Dallas, Houston or Shreveport.',
-  about: 'Hands, tools and drawings on a plan table. Tight crop.',
-};
+/** Image paths (files in /public/img). Hover images are placeholders until real job photography is supplied. */
+export const images = {
+  hero: '/img/hero.jpg',
+  turnover: '/img/services/turnover-cleaning.jpg',
+  cleanouts: '/img/services/cleanouts.jpg',
+  painting: '/img/services/painting.jpg',
+  repairs: '/img/services/handyman.jpg',
+  carpet: '/img/services/carpet.jpg',
+  rooflines: '/img/services/make-ready.jpg',
+} as const;
 
 export const home = {
   seo: {
@@ -53,8 +51,8 @@ export const home = {
   },
   hero: {
     kicker: 'Veteran-led. Texas and Louisiana.',
-    headline: 'We take distressed property and return it to service.',
-    sub: 'Block Development Group restores, repositions and develops real estate across Texas and Louisiana.',
+    headline: ['We take distressed property', 'and return it to service.'],
+    sub: 'Veteran-led real estate services and development across Texas and Louisiana.',
     markets: ['Dallas–Fort Worth', 'Houston', 'Shreveport–Bossier'],
   },
   tiersHeading: 'Three disciplines. One standard.',
@@ -66,7 +64,7 @@ export const home = {
       body: 'Cleanouts, turnovers, make-ready and full rehabs. We bring vacant and rundown property back into service on schedule.',
       href: '/property-services/',
       linkLabel: 'Property services',
-      photo: 'restore',
+      img: 'turnover',
     },
     {
       n: '02',
@@ -74,7 +72,7 @@ export const home = {
       body: 'Underperforming assets, rebuilt to earn. Scope is fixed, capital is controlled and the work is documented.',
       href: '/rehab-restoration/',
       linkLabel: 'Rehab and restoration',
-      photo: 'reposition',
+      img: 'painting',
     },
     {
       n: '03',
@@ -82,7 +80,7 @@ export const home = {
       body: 'Acquisition, infill and ground-up development in Texas and Louisiana growth markets. Built for the long hold.',
       href: '/development/',
       linkLabel: 'Development',
-      photo: 'develop',
+      img: 'rooflines',
     },
   ] as const,
   owners: {
@@ -94,7 +92,12 @@ export const home = {
   investors: {
     kicker: 'For investors and partners',
     heading: 'A long-range plan.',
-    body: 'Acquire. Reposition. Develop. Two states, one operating discipline. We work with investors, developers, brokers and lenders who think in years, not quarters.',
+    body: 'Two states, one operating discipline. We work with investors, developers, brokers and lenders who think in years, not quarters.',
+    pillars: [
+      { title: 'Acquire', body: 'Distressed and undervalued property in established Texas and Louisiana submarkets.' },
+      { title: 'Reposition', body: 'Scope-controlled upgrades that restore an asset to its earning potential.' },
+      { title: 'Develop', body: 'Infill and ground-up projects, executed by the team that built the track record.' },
+    ],
   },
   markets: {
     heading: 'Texas and Louisiana.',
@@ -154,10 +157,10 @@ export const propertyServices = {
   process: {
     heading: 'How a job runs.',
     steps: [
-      { n: '01', title: 'Walkthrough', body: 'We see the property, or review your photos.' },
-      { n: '02', title: 'Scope', body: 'A written scope and schedule for your approval.' },
-      { n: '03', title: 'Execute', body: 'The crew works the scope. Nothing outside it without your approval.' },
-      { n: '04', title: 'Report', body: 'Photo documentation and a completion report.' },
+      { n: '01', title: 'Walkthrough', body: 'We see the property, or review your photos.', icon: 'house' },
+      { n: '02', title: 'Scope', body: 'A written scope and schedule for your approval.', icon: 'document' },
+      { n: '03', title: 'Execute', body: 'The crew works the scope. Nothing outside it without your approval.', icon: 'roller' },
+      { n: '04', title: 'Report', body: 'Photo documentation and a completion report.', icon: 'camera' },
     ],
   },
 };
@@ -190,10 +193,10 @@ export const rehab = {
   method: {
     heading: 'How we run a rehab.',
     steps: [
-      { n: '01', title: 'Assess', body: 'Walk the asset. Record condition. Identify what is structural and what is cosmetic.' },
-      { n: '02', title: 'Scope', body: 'Fix the scope in writing. Define sequence, trades and completion criteria.' },
-      { n: '03', title: 'Build', body: 'Execute in sequence. Report progress with photographs. Surface issues early.' },
-      { n: '04', title: 'Close out', body: 'Inspect against scope. Deliver the record. Return the asset to service.' },
+      { n: '01', title: 'Assess', body: 'Walk the asset. Record condition. Identify what is structural and what is cosmetic.', icon: 'search' },
+      { n: '02', title: 'Scope', body: 'Fix the scope in writing. Define sequence, trades and completion criteria.', icon: 'document' },
+      { n: '03', title: 'Build', body: 'Execute in sequence. Report progress with photographs. Surface issues early.', icon: 'wrench' },
+      { n: '04', title: 'Close out', body: 'Inspect against scope. Deliver the record. Return the asset to service.', icon: 'check' },
     ],
   },
   note: 'Licensed plumbing, electrical and HVAC work is performed by licensed trades under our coordination.',
@@ -215,10 +218,10 @@ export const development = {
     body: 'We start where the work is: distressed property, on the ground, in markets we know. That operating base gives us cost knowledge, local relationships and credibility. We build on it. Acquisition first. Repositioning next. Ground-up development as the platform matures.',
   },
   stages: [
-    { n: '01', title: 'Acquisition', body: 'Distressed and undervalued property in established Texas and Louisiana submarkets. We underwrite the work before we commit.' },
-    { n: '02', title: 'Value-add repositioning', body: 'Operational and physical upgrades that restore an asset to its earning potential. Scope-controlled and documented.' },
-    { n: '03', title: 'Infill development', body: 'Small and mid-scale sites inside the existing urban fabric, where demand is proven and land is constrained.' },
-    { n: '04', title: 'Ground-up development', body: 'Purpose-built projects in growth corridors across both states, executed by the team that has already built the track record.' },
+    { n: '01', title: 'Acquire', body: 'Distressed and undervalued property in established Texas and Louisiana submarkets. We underwrite the work before we commit.', icon: 'key' },
+    { n: '02', title: 'Reposition', body: 'Operational and physical upgrades that restore an asset to its earning potential. Scope-controlled and documented.', icon: 'layers' },
+    { n: '03', title: 'Infill', body: 'Small and mid-scale sites inside the existing urban fabric, where demand is proven and land is constrained.', icon: 'house' },
+    { n: '04', title: 'Ground-up', body: 'Purpose-built projects in growth corridors across both states, executed by the team that has already built the track record.', icon: 'building' },
   ],
   principles: {
     heading: 'How we think about capital.',

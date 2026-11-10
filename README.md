@@ -5,9 +5,9 @@ Next.js (App Router) + Tailwind CSS v4, statically exported for Cloudflare Pages
 ```
 src/content/site.ts     ALL COPY lives here: edit text, nav, SEO titles/descriptions, photo notes
 src/app/                routes: / , /property-services , /rehab-restoration , /development , /markets , /about , /contact
-src/components/         Header, Footer, Button, Section, PageHero, CtaBand, Reveal (scroll motion),
-                        PhotoSlot (labelled image placeholders), StateMap (TX + LA), ContactForm
-src/app/globals.css     design tokens (colors, fonts) and the reveal motion
+src/components/         Header, Footer, Sections (Section, SecHead, PageHead), Tiles (hover images), Rail (animated process rail),
+                        HeroBg (scroll-zoom photo), CtaBand, Reveal (scroll motion), Icon, StateMap (TX + LA), ContactForm
+src/app/globals.css     the whole visual system (colors, type, components, motion)
 functions/api/contact.ts  serverless form handler (FormSubmit by default, Resend optional)
 public/og.png           social share image (replace with final artwork)
 ```
@@ -44,8 +44,8 @@ Until activated (or if the mail service is ever down), the endpoint returns 503 
 Test locally in the real Workers runtime: `npm run preview` (builds, then serves `out/` plus the function at http://localhost:8788). Set `FORMSUBMIT_URL` to a local mock to avoid sending real mail.
 
 ## Replace before launch
-- **Photography:** every image is a labelled placeholder (`PhotoSlot`). Notes for the shots you need are in `photos` in `src/content/site.ts`. To use a real photo, swap the `PhotoSlot` for a `next/image` (or a CSS background) in the page file.
-- `public/og.png` and `src/app/icon.svg` are simple generated brand assets.
+- **Photography:** the hero uses the supplied toolbag photo (`public/img/hero.jpg`). The hover images on the tiles (`public/img/services/*.jpg`) are **placeholders** (AI-generated stand-ins and crops). Replace each with a real job photo using the same file name, about 1200x800 px. Which tile uses which file is set in `images` in `src/content/site.ts`.
+- `public/og.png` and `src/app/icon.svg` are simple generated brand assets. The header and footer use the B&H logo files in `public/img/`.
 - The state outlines in `StateMap.tsx` are generalized, not survey-accurate.
 - Analytics: add your snippet where marked in `src/app/layout.tsx`.
 
@@ -53,6 +53,6 @@ Test locally in the real Workers runtime: `npm run preview` (builds, then serves
 Short declarative sentences. No prices anywhere. No exclamation points or emojis. Veteran-led, never "special forces".
 
 ## Notes
-- Design: near-black `#0b0b0c`, charcoal, steel gray, one burnished-gold accent. Headlines in Zilla Slab (self-hosted via Fontsource), body in Inter. Scroll motion is a slow fade-up only and is disabled for `prefers-reduced-motion`; content is visible with JavaScript off.
+- Design: ported from the live Block & Hewston Property Services site: ivory and charcoal sections, gold hairlines, Cormorant Garamond and Cormorant SC (self-hosted via Fontsource), outlined small-caps buttons. Motion: hero photo zooms with scroll, tiles reveal an image on hover, the process rail draws itself on scroll, sections fade up slowly. All motion is disabled for `prefers-reduced-motion`, and content is visible with JavaScript off.
 - SEO: per-page titles/descriptions target "property services Shreveport", "rental rehab Texas", "make-ready Louisiana" and "real estate development Dallas"; Organization JSON-LD, sitemap and robots are generated at build.
-- Accessibility: skip link, keyboard-operable menu and form, visible focus, labelled fields with inline errors announced via `role="alert"`, gold/bone-on-black contrast above WCAG AA.
+- Accessibility: skip link, keyboard-operable menu and form, visible focus, labelled fields with inline errors announced via `role="alert"`, contrast designed for WCAG AA.

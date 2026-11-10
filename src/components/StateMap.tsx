@@ -38,18 +38,18 @@ export default function StateMap({ className = '' }: { className?: string }) {
       role="img"
       aria-label="Stylized map of Texas and Louisiana marking Dallas–Fort Worth, Houston and Shreveport–Bossier."
     >
-      <path d={path(TEXAS)} fill="#1c1e21" stroke="#6b7178" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d={path(LOUISIANA)} fill="#17191b" stroke="#b8924a" strokeWidth="1.5" strokeLinejoin="round" />
-      <text x={X(-101.2)} y={Y(31.2)} fill="#6b7178" fontSize="15" letterSpacing="6" fontWeight="600">TEXAS</text>
-      <text x={X(-92.3)} y={Y(30.6)} fill="#b8924a" fontSize="12" letterSpacing="4" fontWeight="600" textAnchor="middle">LOUISIANA</text>
+      <path d={path(TEXAS)} fill="#eadfc6" stroke="#725822" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d={path(LOUISIANA)} fill="#f8f3e7" stroke="#a3813f" strokeWidth="1.5" strokeLinejoin="round" />
+      <text x={X(-101.2)} y={Y(31.2)} fill="#725822" fontSize="15" letterSpacing="6" fontWeight="600">TEXAS</text>
+      <text x={X(-92.3)} y={Y(30.6)} fill="#725822" fontSize="12" letterSpacing="4" fontWeight="600" textAnchor="middle">LOUISIANA</text>
       {MARKETS.map((m) => {
         const cx = X(m.lon);
         const cy = Y(m.lat);
         return (
           <g key={m.name}>
-            <circle cx={cx} cy={cy} r="11" fill="none" stroke="#d1a95d" strokeOpacity="0.45" />
-            <circle cx={cx} cy={cy} r="4.5" fill="#d1a95d" />
-            <text x={cx + m.dx} y={cy + m.dy} textAnchor={m.anchor} fill="#eceae5" fontSize="13" fontWeight="600" letterSpacing="1">
+            <circle cx={cx} cy={cy} r="11" fill="none" stroke="#a3813f" strokeOpacity="0.6" />
+            <circle cx={cx} cy={cy} r="4.5" fill="#a3813f" />
+            <text x={cx + m.dx} y={cy + m.dy} textAnchor={m.anchor} fill="#141413" fontSize="13" fontWeight="600" letterSpacing="1">
               {m.name.toUpperCase()}
             </text>
           </g>

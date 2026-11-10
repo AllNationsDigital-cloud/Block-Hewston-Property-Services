@@ -1,60 +1,56 @@
 import Link from 'next/link';
 import { footer, nav, site } from '@/content/site';
-import Container from './Container';
-import { Wordmark } from './Header';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-iron bg-ink py-16">
-      <Container>
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <Link href="/" aria-label={`${site.name}, home`}>
-              <Wordmark />
-            </Link>
-            <p className="mt-6 max-w-sm text-sm text-steel">{footer.blurb}</p>
-          </div>
-          <nav aria-label="Footer">
-            <h2 className="kicker mb-4 !font-sans">Navigate</h2>
-            <ul className="space-y-2 text-sm">
-              {nav.map((n) => (
-                <li key={n.href}>
-                  <Link href={n.href} className="text-bone hover:text-gold-bright">
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div>
-            <h2 className="kicker mb-4 !font-sans">Contact</h2>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href={`tel:${site.phoneTel}`} className="text-bone hover:text-gold-bright">
-                  {site.phone}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${site.email}`} className="break-all text-bone hover:text-gold-bright">
-                  {site.email}
-                </a>
-              </li>
-              <li className="text-steel">{site.hq}</li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-14 flex flex-col gap-2 border-t border-iron pt-6 text-xs text-steel-dim sm:flex-row sm:justify-between">
+    <footer className="site-footer">
+      <div className="wrap foot">
+        <div>
+          <a href={site.parent.url} rel="noopener" aria-label="Block & Hewston (parent company site)">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/img/logo-gold.png" width={600} height={274} alt="Block & Hewston" className="foot__logo" />
+          </a>
           <p>
-            © {new Date().getFullYear()} {site.parent.name}. All rights reserved.
-          </p>
-          <p>
-            {footer.legal}{' '}
-            <a href={site.parent.url} rel="noopener" className="text-steel hover:text-gold-bright">
-              {site.parent.name}
-            </a>
+            <b>{site.name}</b>
+            <br />
+            {footer.blurb}
           </p>
         </div>
-      </Container>
+        <p>
+          <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+          <br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <br />
+          {site.hq}
+        </p>
+        <p>
+          {nav.slice(0, 3).map((n) => (
+            <span key={n.href}>
+              <Link href={n.href}>{n.label}</Link>
+              <br />
+            </span>
+          ))}
+        </p>
+        <p>
+          {nav.slice(3).map((n) => (
+            <span key={n.href}>
+              <Link href={n.href}>{n.label}</Link>
+              <br />
+            </span>
+          ))}
+        </p>
+      </div>
+      <div className="wrap foot__legal">
+        <p>
+          © {new Date().getFullYear()} {site.parent.name}. All rights reserved.
+        </p>
+        <p>
+          {footer.legal}{' '}
+          <a href={site.parent.url} rel="noopener">
+            {site.parent.name}
+          </a>
+        </p>
+      </div>
     </footer>
   );
 }
