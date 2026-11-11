@@ -6,7 +6,6 @@ import { contact, site } from '@/content/site';
 type Kind = 'owner' | 'investor';
 type Errors = Partial<Record<'name' | 'email' | 'phone' | 'address' | 'project', string>>;
 
-
 export default function ContactForm() {
   const f = contact.form;
   const [kind, setKind] = useState<Kind>('owner');
@@ -21,7 +20,6 @@ export default function ContactForm() {
     const t = new URLSearchParams(window.location.search).get('type');
     if (t === 'owner' || t === 'investor') setKind(t);
   }, []);
-
   useEffect(() => {
     if (status === 'success') successRef.current?.focus();
   }, [status]);
@@ -74,28 +72,34 @@ export default function ContactForm() {
   if (status === 'success') {
     return (
       <div ref={successRef} tabIndex={-1} role="status" className="success">
-        <h2>{f.successTitle}</h2>
-        <span className="rule" />
-        <p className="lede">{f.successBody}</p>
-        <p>
-          <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+        <div className="display">{f.successTitle}</div>
+        <p className="lead">{f.successBody}</p>
+        <p style={{ margin: 0, fontSize: 22 }}>
+          <a href={`tel:${site.phoneTel}`} style={{ borderBottom: '1.5px solid #000' }}>{site.phone}</a>
         </p>
       </div>
     );
   }
 
-  const err = (k: keyof Errors) =>
-    errors[k] ? (
-      <p id={`${k}-err`} role="alert" className="field__error">
-        {errors[k]}
-      </p>
-    ) : null;
+  const field = (k: keyof Errors, label: string, input: React.ReactNode, hint?: string) => (
+    <div className="field">
+      <label htmlFor={k}>
+        <span className="lbl">{label}</span>
+      </label>
+      <span className={`box ${errors[k] ? 'err' : ''}`}>{input}</span>
+      {errors[k] ? (
+        <span id={`${k}-err`} role="alert" className="msg">{errors[k]}</span>
+      ) : (
+        hint && <span className="hint">{hint}</span>
+      )}
+    </div>
+  );
   const aria = (k: keyof Errors) => ({ 'aria-invalid': errors[k] ? true : undefined, 'aria-describedby': errors[k] ? `${k}-err` : undefined });
 
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="form">
-      <fieldset>
-        <legend>{f.typeLabel}</legend>
+      <fieldset style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
+        <legend style={{ marginBottom: 10 }}>{f.typeLabel}</legend>
         <div className="seg">
           {f.types.map((t) => (
             <label key={t.value}>
@@ -106,41 +110,15 @@ export default function ContactForm() {
         </div>
       </fieldset>
 
-      <div className="row row--2">
-        <div className="field">
-          <label htmlFor="name">{f.nameLabel}</label>
-          <input id="name" name="name" autoComplete="name" required {...aria('name')} />
-          {err('name')}
-        </div>
-        <div className="field">
-          <label htmlFor="email">{f.emailLabel}</label>
-          <input id="email" name="email" type="email" autoComplete="email" required {...aria('email')} />
-          {err('email')}
-        </div>
+      <div className="row">
+        {field('name', f.nameLabel, <input id="name" name="name" autoComplete="name" required {...aria('name')} />)}
+        {field('email', f.emailLabel, <input id="email" name="email" type="email" autoComplete="email" required {...aria('email')} />)}
       </div>
-
-      <div className="row row--2">
-        <div className="field">
-          <label htmlFor="phone">{f.phoneLabel}</label>
-          <input id="phone" name="phone" type="tel" autoComplete="tel" required {...aria('phone')} />
-          {err('phone')}
-        </div>
-        <div className="field">
-          <label htmlFor="address">
-            {f.addressLabel} {kind === 'investor' && <span className="hint">({f.addressHint})</span>}
-          </label>
-          <input id="address" name="address" autoComplete="street-address" {...aria('address')} />
-          {err('address')}
-        </div>
+      <div className="row">
+        {field('phone', f.phoneLabel, <input id="phone" name="phone" type="tel" autoComplete="tel" required {...aria('phone')} />)}
+        {field('address', f.addressLabel, <input id="address" name="address" autoComplete="street-address" {...aria('address')} />, kind === 'investor' ? f.addressHint : undefined)}
       </div>
-
-      <div className="field">
-        <label htmlFor="project">
-          {f.projectLabel} <span className="hint">({f.projectHint})</span>
-        </label>
-        <textarea id="project" name="project" rows={6} required {...aria('project')} />
-        {err('project')}
-      </div>
+      {field('project', f.projectLabel, <textarea id="project" name="project" rows={5} required {...aria('project')} />, f.projectHint)}
 
       {/* Honeypot: real visitors never see or fill this. */}
       <div aria-hidden="true" className="hp">
@@ -151,17 +129,17 @@ export default function ContactForm() {
       </div>
 
       {status === 'error' && (
-        <div role="alert" className="form__alert">
-          {f.errorBody}{' '}
-          <a href={mailto}>Email {site.email}</a>.
+        <div role="alert" className="alert">
+          {f.errorBody} <a href={mailto}>Email {site.email}</a>.
         </div>
       )}
 
-      <div className="form__foot">
-        <button type="submit" disabled={status === 'sending'} className="btn btn--gold">
-          {status === 'sending' ? f.sending : f.submit}
+      <div className="btns" style={{ alignItems: 'center', gap: 24 }}>
+        <button type="submit" disabled={status === 'sending'} className="btn">
+          <span>{status === 'sending' ? f.sending : f.submit}</span>
+          <span className="arrow" aria-hidden="true">→</span>
         </button>
-        <p>{f.consent}</p>
+        <span className="note" style={{ margin: 0, fontSize: 16 }}>{f.consent}</span>
       </div>
     </form>
   );

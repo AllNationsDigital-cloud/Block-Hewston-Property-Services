@@ -1,6 +1,6 @@
 /**
- * Simple stylized map of Texas and Louisiana. Outlines are generalized (not survey-accurate).
- * Coordinates are [longitude, latitude] and projected at build time.
+ * Simple stylized map of Texas and Louisiana in black and white. Outlines are generalized, not survey-accurate.
+ * Coordinates are [longitude, latitude], projected at build time.
  */
 type Pt = [number, number];
 
@@ -11,45 +11,38 @@ const TEXAS: Pt[] = [
   [-101.0, 29.4], [-102.3, 29.8], [-102.7, 29.7], [-103.15, 28.98], [-104.5, 29.65], [-104.9, 30.6], [-106.5, 31.77],
   [-106.62, 32.0], [-103.06, 32.0],
 ];
-
 const LOUISIANA: Pt[] = [
   [-94.04, 33.02], [-91.17, 33.0], [-91.1, 32.4], [-91.55, 31.0], [-89.73, 31.0], [-89.6, 30.17], [-89.3, 29.95],
   [-89.1, 29.2], [-89.0, 29.0], [-90.4, 29.1], [-91.3, 29.4], [-92.3, 29.55], [-93.84, 29.7], [-94.04, 31.0],
 ];
-
 const MARKETS = [
-  { name: 'Dallas–Fort Worth', lon: -97.0, lat: 32.8, dx: -14, dy: -12, anchor: 'end' as const },
-  { name: 'Houston', lon: -95.37, lat: 29.76, dx: -14, dy: 18, anchor: 'end' as const },
-  { name: 'Shreveport–Bossier', lon: -93.75, lat: 32.5, dx: 0, dy: -22, anchor: 'middle' as const },
+  { name: 'Dallas–Fort Worth', lon: -97.0, lat: 32.8, dx: -16, dy: -14, anchor: 'end' as const },
+  { name: 'Houston', lon: -95.37, lat: 29.76, dx: -16, dy: 22, anchor: 'end' as const },
+  { name: 'Shreveport–Bossier', lon: -93.75, lat: 32.5, dx: 0, dy: -24, anchor: 'middle' as const },
 ];
 
-const K = 40; // px per degree latitude
+const K = 40;
 const X = (lon: number) => (lon + 106.9) * 0.857 * K;
 const Y = (lat: number) => (36.8 - lat) * K;
 const path = (pts: Pt[]) => pts.map(([lo, la], i) => `${i ? 'L' : 'M'}${X(lo).toFixed(1)} ${Y(la).toFixed(1)}`).join(' ') + 'Z';
 const W = Math.ceil(X(-88.6));
 const H = Math.ceil(Y(25.7));
 
-export default function StateMap({ className = '' }: { className?: string }) {
+export default function StateMap() {
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className={className}
-      role="img"
-      aria-label="Stylized map of Texas and Louisiana marking Dallas–Fort Worth, Houston and Shreveport–Bossier."
-    >
-      <path d={path(TEXAS)} fill="#eadfc6" stroke="#725822" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d={path(LOUISIANA)} fill="#f8f3e7" stroke="#a3813f" strokeWidth="1.5" strokeLinejoin="round" />
-      <text x={X(-101.2)} y={Y(31.2)} fill="#725822" fontSize="15" letterSpacing="6" fontWeight="600">TEXAS</text>
-      <text x={X(-92.3)} y={Y(30.6)} fill="#725822" fontSize="12" letterSpacing="4" fontWeight="600" textAnchor="middle">LOUISIANA</text>
+    <svg viewBox={`0 0 ${W} ${H}`} className="map" role="img" aria-label="Stylized map of Texas and Louisiana marking Dallas–Fort Worth, Houston and Shreveport–Bossier.">
+      <path d={path(TEXAS)} fill="#f2f2f2" stroke="#000" strokeWidth="1.5" strokeLinejoin="miter" />
+      <path d={path(LOUISIANA)} fill="#000" stroke="#000" strokeWidth="1.5" strokeLinejoin="miter" />
+      <text x={X(-101.4)} y={Y(31.2)} fill="#767676" fontSize="14" letterSpacing="7" fontWeight="800">TEXAS</text>
+      <text x={X(-92.2)} y={Y(30.55)} fill="#fff" fontSize="11" letterSpacing="3" fontWeight="800" textAnchor="middle">LOUISIANA</text>
       {MARKETS.map((m) => {
         const cx = X(m.lon);
         const cy = Y(m.lat);
+        const onBlack = m.name.startsWith('Shreveport');
         return (
           <g key={m.name}>
-            <circle cx={cx} cy={cy} r="11" fill="none" stroke="#a3813f" strokeOpacity="0.6" />
-            <circle cx={cx} cy={cy} r="4.5" fill="#a3813f" />
-            <text x={cx + m.dx} y={cy + m.dy} textAnchor={m.anchor} fill="#141413" fontSize="13" fontWeight="600" letterSpacing="1">
+            <rect x={cx - 6} y={cy - 6} width="12" height="12" fill={onBlack ? '#fff' : '#000'} stroke={onBlack ? '#000' : '#fff'} strokeWidth="1.5" />
+            <text x={cx + m.dx} y={cy + m.dy} textAnchor={m.anchor} fill="#000" stroke="#fff" strokeWidth="4" paintOrder="stroke" strokeLinejoin="round" fontSize="12" fontWeight="800" letterSpacing="1.5">
               {m.name.toUpperCase()}
             </text>
           </g>

@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import CtaBand from '@/components/CtaBand';
-import Rail from '@/components/Rail';
-import Reveal from '@/components/Reveal';
-import { PageHead, Section, SecHead } from '@/components/Sections';
-import { development as c } from '@/content/site';
+import Masthead from '@/components/Masthead';
+import { Button, CTABand, Hero, ProcessSteps, SectionHeader, ServiceList } from '@/components/ui';
+import { cta, development as c, photos } from '@/content/site';
 
 export const metadata: Metadata = {
   title: c.seo.title,
@@ -15,53 +13,34 @@ export const metadata: Metadata = {
 export default function DevelopmentPage() {
   return (
     <>
-      <PageHead {...c.hero} />
-
-      <Section tone="tint">
-        <div className="split split--wide" style={{ alignItems: 'start' }}>
-          <SecHead heading={c.vision.heading} />
-          <Reveal delay={120}>
-            <p className="lede" style={{ maxWidth: 'none' }}>
-              {c.vision.body}
-            </p>
-          </Reveal>
+      <Hero
+        photo={photos.formwork}
+        title={c.hero.title}
+        lede={c.hero.lede}
+        masthead={<Masthead overlay />}
+        height="min(820px,100vh)"
+        position="center 35%"
+        actions={<Button href={cta.investor.href} tone="dark" arrow>{cta.investor.label}</Button>}
+      />
+      <div className="pad">
+        <SectionHeader title={c.vision.title} lede={c.vision.lede} />
+      </div>
+      <div className="pad-x" style={{ paddingBottom: 'var(--section)' }}>
+        <ServiceList items={c.stages} />
+      </div>
+      <section className="alt pad">
+        <div className="stack">
+          <SectionHeader layout="stacked" eyebrow={c.principles.eyebrow} title={c.principles.title} />
+          <ProcessSteps steps={c.principles.items} />
         </div>
-      </Section>
-
-      <Section>
-        <SecHead heading="The path." intro="Four stages. Each one funds and informs the next." />
-        <Rail items={c.stages.map((s) => ({ title: s.title, body: s.body, icon: s.icon }))} />
-      </Section>
-
-      <Section tone="dark">
-        <SecHead heading={c.principles.heading} />
-        <Reveal>
-          <div className="cells cells--2">
-            {c.principles.items.map((p) => (
-              <div key={p.title}>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </Section>
-
-      <Section>
-        <SecHead heading={c.audiences.heading} />
-        <Reveal>
-          <div className="cells cells--4 cells--light">
-            {c.audiences.items.map((a) => (
-              <div key={a.title}>
-                <h3>{a.title}</h3>
-                <p>{a.body}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </Section>
-
-      <CtaBand heading="Partner with us." body="If your horizon matches ours, introduce yourself." />
+      </section>
+      <div className="pad">
+        <div className="stack">
+          <SectionHeader layout="stacked" eyebrow={c.audiences.eyebrow} title={c.audiences.title} />
+          <ProcessSteps steps={c.audiences.items} />
+        </div>
+      </div>
+      <CTABand title={c.cta.title} lede={c.cta.lede} />
     </>
   );
 }

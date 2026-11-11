@@ -1,55 +1,44 @@
 import Link from 'next/link';
-import { footer, nav, site } from '@/content/site';
+import { footer, site } from '@/content/site';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <div className="wrap foot">
+      <div className="foot">
         <div>
-          <a href={site.parent.url} rel="noopener" aria-label="Block & Hewston (parent company site)">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/logo-gold.png" width={600} height={274} alt="Block & Hewston" className="foot__logo" />
-          </a>
-          <p>
-            <b>{site.name}</b>
-            <br />
-            {footer.blurb}
-          </p>
+          <Logo tone="dark" size={48} />
+          <div className="foot__addr">{footer.address}</div>
         </div>
-        <p>
-          <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
-          <br />
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-          <br />
-          {site.hq}
-        </p>
-        <p>
-          {nav.slice(0, 3).map((n) => (
-            <span key={n.href}>
-              <Link href={n.href}>{n.label}</Link>
-              <br />
-            </span>
-          ))}
-        </p>
-        <p>
-          {nav.slice(3).map((n) => (
-            <span key={n.href}>
-              <Link href={n.href}>{n.label}</Link>
-              <br />
-            </span>
-          ))}
-        </p>
+        {footer.columns.map((c) => (
+          <nav key={c.title} aria-label={c.title}>
+            <h2>{c.title}</h2>
+            <ul>
+              {c.links.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li><a href={`tel:${site.phoneTel}`}>{site.phone}</a></li>
+            <li><a href={`mailto:${site.email}`} style={{ wordBreak: 'break-all' }}>{site.email}</a></li>
+          </ul>
+        </div>
       </div>
-      <div className="wrap foot__legal">
-        <p>
-          © {new Date().getFullYear()} {site.parent.name}. All rights reserved.
-        </p>
-        <p>
-          {footer.legal}{' '}
-          <a href={site.parent.url} rel="noopener">
+      <div className="foot__legal">
+        <span>
+          © Block Development Group. A{' '}
+          <a href={site.parent.url} rel="noopener" style={{ textDecoration: 'underline' }}>
             {site.parent.name}
-          </a>
-        </p>
+          </a>{' '}
+          company.
+        </span>
+        <span>Texas · Louisiana</span>
       </div>
     </footer>
   );

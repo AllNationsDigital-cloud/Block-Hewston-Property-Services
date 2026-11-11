@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import CtaBand from '@/components/CtaBand';
+import Masthead from '@/components/Masthead';
 import Reveal from '@/components/Reveal';
-import { PageHead, Section } from '@/components/Sections';
 import StateMap from '@/components/StateMap';
-import { markets as c } from '@/content/site';
+import { CTABand, Hero, ServiceList } from '@/components/ui';
+import { markets as c, photos } from '@/content/site';
 
 export const metadata: Metadata = {
   title: c.seo.title,
@@ -15,31 +15,17 @@ export const metadata: Metadata = {
 export default function MarketsPage() {
   return (
     <>
-      <PageHead {...c.hero} />
-      <Section>
-        <div className="split">
-          <Reveal className="map">
+      <Hero photo={photos.shreveport} title={c.hero.title} lede={c.hero.lede} masthead={<Masthead overlay />} height="min(820px,100vh)" position="center 60%" />
+      <div className="pad">
+        <div className="grid-2" style={{ alignItems: 'center' }}>
+          <Reveal>
             <StateMap />
           </Reveal>
-          <Reveal delay={150}>
-            <div className="cells cells--light">
-              {c.anchors.map((m) => (
-                <div key={m.name}>
-                  <p className="kicker" style={{ marginBottom: '.5rem' }}>
-                    {m.role}
-                  </p>
-                  <h3>{m.name}</h3>
-                  <p>{m.body}</p>
-                </div>
-              ))}
-            </div>
-            <p className="note" style={{ marginTop: '1.25rem' }}>
-              {c.note}
-            </p>
-          </Reveal>
+          <ServiceList items={c.anchors} />
         </div>
-      </Section>
-      <CtaBand heading="Your market. Our crew." body="Tell us where the property is. We will tell you how we can help." />
+        <p className="note" style={{ marginTop: 40 }}>{c.note}</p>
+      </div>
+      <CTABand title={c.cta.title} lede={c.cta.lede} />
     </>
   );
 }

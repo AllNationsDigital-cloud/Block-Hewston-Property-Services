@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import CtaBand from '@/components/CtaBand';
-import Reveal from '@/components/Reveal';
-import { PageHead, Section } from '@/components/Sections';
-import { about as c, site } from '@/content/site';
+import Masthead from '@/components/Masthead';
+import { Button, CTABand, Hero, ProcessSteps, SectionHeader, Statement } from '@/components/ui';
+import { about as c, photos, site } from '@/content/site';
 
 export const metadata: Metadata = {
   title: c.seo.title,
@@ -14,43 +13,23 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHead {...c.hero} />
-
-      <Section>
-        <div style={{ maxWidth: '44rem' }}>
-          {c.story.map((p, i) => (
-            <Reveal key={i} delay={i * 100}>
-              <p className={i === 0 ? 'lede' : ''}>{p}</p>
-            </Reveal>
-          ))}
+      <Hero photo={photos.dallasTrinity} title={c.hero.title} lede={c.hero.lede} masthead={<Masthead overlay />} height="720px" position="center 60%" />
+      <div className="pad">
+        <SectionHeader title={c.intro.title} lede={c.intro.lede} />
+      </div>
+      <section className="alt pad">
+        <div className="stack">
+          <SectionHeader layout="stacked" eyebrow={c.values.eyebrow} title={c.values.title} />
+          <ProcessSteps steps={c.values.items} />
         </div>
-      </Section>
-
-      <Section tone="dark">
-        <Reveal>
-          <div className="cells cells--3">
-            {c.values.map((v) => (
-              <div key={v.title}>
-                <h3>{v.title}</h3>
-                <p>{v.body}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </Section>
-
-      <Section tone="tint">
-        <Reveal className="narrow">
-          <h2>{c.parent.heading}</h2>
-          <span className="rule" />
-          <p>{c.parent.body}</p>
-          <a className="btn" href={site.parent.url} rel="noopener">
-            {c.parent.link}
-          </a>
-        </Reveal>
-      </Section>
-
-      <CtaBand heading="Work with a firm that finishes." body="Owners request a walkthrough. Investors open a conversation." />
+      </section>
+      <div className="pad">
+        <Statement lines={c.statement} />
+      </div>
+      <section className="on-dark pad">
+        <SectionHeader dark eyebrow={c.parent.eyebrow} title={c.parent.title} lede={c.parent.body} action={<Button href={site.parent.url} tone="dark" variant="secondary" external arrow>{c.parent.link}</Button>} />
+      </section>
+      <CTABand title={c.cta.title} lede={c.cta.lede} />
     </>
   );
 }

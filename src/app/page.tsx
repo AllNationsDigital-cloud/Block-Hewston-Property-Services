@@ -1,115 +1,71 @@
-import Link from 'next/link';
-import CtaBand from '@/components/CtaBand';
-import HeroBg from '@/components/HeroBg';
-import Rail from '@/components/Rail';
+import Masthead from '@/components/Masthead';
 import Reveal from '@/components/Reveal';
-import { Section, SecHead } from '@/components/Sections';
-import StateMap from '@/components/StateMap';
-import Tiles from '@/components/Tiles';
-import { cta, home, images, propertyServices } from '@/content/site';
+import { Button, CTABand, Hero, ImageCards, ProcessSteps, SectionHeader, Statement } from '@/components/ui';
+import { cta, home, photos } from '@/content/site';
 
 export default function HomePage() {
   const h = home;
   return (
     <>
-      {/* HERO */}
-      <section className="hero">
-        <HeroBg />
-        <div className="wrap hero__in">
-          <p className="kicker">{h.hero.kicker}</p>
-          <h1>
-            {h.hero.headline.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </h1>
-          <p className="lede">{h.hero.sub}</p>
-          <div className="btns">
-            <Link className="btn btn--gold" href={cta.owner.href}>
-              {cta.owner.label}
-            </Link>
-            <Link className="btn btn--line-light" href={cta.investor.href}>
-              {cta.investor.label}
-            </Link>
-          </div>
+      <Hero
+        photo={photos.dallasSkyline}
+        title={h.hero.title}
+        lede={h.hero.lede}
+        masthead={<Masthead overlay />}
+        position="center 40%"
+        actions={
+          <>
+            <Button href={cta.owner.href} tone="dark" arrow>{cta.owner.label}</Button>
+            <Button href={cta.investor.href} tone="dark" variant="secondary">{cta.investor.label}</Button>
+          </>
+        }
+      />
+
+      <div className="pad">
+        <SectionHeader title={h.intro.title} lede={h.intro.lede} action={<Button href={h.intro.action.href} arrow>{h.intro.action.label}</Button>} />
+      </div>
+
+      <ImageCards items={h.tiers.map((t) => ({ ...t, photo: photos[t.photo] }))} />
+
+      <div className="pad">
+        <div className="stack">
+          <SectionHeader layout="stacked" eyebrow={h.how.eyebrow} title={h.how.title} />
+          <ProcessSteps steps={h.how.steps} />
         </div>
-        <div className="wrap">
-          <ul className="hero__facts">
-            {h.hero.markets.map((m) => (
-              <li key={m}>{m}</li>
-            ))}
-          </ul>
+      </div>
+
+      <section className="alt pad">
+        <div className="grid-2">
+          {h.audiences.map((a, i) => (
+            <Reveal key={a.eyebrow} delay={i * 120}>
+              <div className="step" style={{ gap: 24 }}>
+                <div className="eyebrow">{a.eyebrow}</div>
+                <h2 className="display" style={{ fontSize: 'clamp(30px,3.6vw,52px)', lineHeight: 1, fontWeight: 800 }}>
+                  {a.title.map((l) => <span key={l}>{l}</span>)}
+                </h2>
+                <p className="lead" style={{ fontSize: 21 }}>{a.body}</p>
+                <div>
+                  <Button href={i === 0 ? cta.owner.href : cta.investor.href} variant={i === 0 ? 'primary' : 'secondary'} arrow>
+                    {i === 0 ? cta.owner.label : cta.investor.label}
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 
-      {/* THREE TIERS */}
-      <Section>
-        <SecHead heading={h.tiersHeading} intro={h.tiersIntro} />
-        <Tiles
-          cols={3}
-          items={h.tiers.map((t) => ({ title: t.title, body: t.body, img: images[t.img], href: t.href, cta: t.linkLabel }))}
-        />
-      </Section>
-
-      {/* OWNERS */}
-      <Section tone="tint">
-        <SecHead kicker={h.owners.kicker} heading={h.owners.heading} intro={h.owners.body} />
-        <Rail items={propertyServices.process.steps.map((s) => ({ title: s.title, body: s.body, icon: s.icon }))} />
-        <Reveal className="btns" >
-          <div style={{ marginTop: '2rem' }}>
-            <Link className="btn btn--dark" href={cta.owner.href}>
-              {cta.owner.label}
-            </Link>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* INVESTORS */}
-      <Section tone="dark">
-        <SecHead kicker={h.investors.kicker} heading={h.investors.heading} intro={h.investors.body} />
-        <Reveal>
-          <div className="cells cells--3">
-            {h.investors.pillars.map((p) => (
-              <div key={p.title}>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="btns" style={{ marginTop: '2rem' }}>
-            <Link className="btn btn--gold" href={cta.investor.href}>
-              {cta.investor.label}
-            </Link>
-            <Link className="btn btn--line-light" href="/development/">
-              The plan
-            </Link>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* MARKETS */}
-      <Section>
-        <div className="split">
+      <div className="pad">
+        <div className="stack" style={{ gap: 40 }}>
+          <Statement lines={h.markets.lines} />
           <Reveal>
-            <p className="kicker">Markets</p>
-            <h2>{h.markets.heading}</h2>
-            <span className="rule" />
-            <p className="lede">{h.markets.body}</p>
-            <ul className="ticks">
-              {h.hero.markets.map((m) => (
-                <li key={m}>{m}</li>
-              ))}
-            </ul>
-            <Link className="btn" href="/markets/">
-              View markets
-            </Link>
-          </Reveal>
-          <Reveal delay={150} className="map">
-            <StateMap />
+            <p className="lead" style={{ marginBottom: 28 }}>{h.markets.body}</p>
+            <Button href="/markets/" variant="text" arrow>View markets</Button>
           </Reveal>
         </div>
-      </Section>
+      </div>
 
-      <CtaBand heading={h.closing.heading} body={h.closing.body} />
+      <CTABand title={h.cta.title} lede={h.cta.lede} />
     </>
   );
 }

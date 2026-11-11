@@ -10,8 +10,6 @@
     "preview": "next build && wrangler pages dev out --port 8788"
   },
   "dependencies": {
-    "@fontsource/cormorant-garamond": "^5.3.0",
-    "@fontsource/cormorant-sc": "^5.3.0",
     "@tailwindcss/postcss": "^4.3.5",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
