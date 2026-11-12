@@ -28,7 +28,7 @@ interface Env {
 }
 
 interface Lead {
-  type: 'owner' | 'investor';
+  type: 'owner' | 'investor' | 'agency';
   name: string;
   email: string;
   phone: string;
@@ -43,18 +43,19 @@ const MAX_BODY = 20_000;
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
 
-const subjectFor = (l: Lead) =>
-  `${l.type === 'owner' ? 'Walkthrough request' : 'Partnership inquiry'} | ${l.name} | Block Development Group`;
+const LABEL: Record<Lead['type'], string> = { owner: 'Owner or operator', investor: 'Investor or partner', agency: 'Government or agency' };
+const SUBJECT: Record<Lead['type'], string> = { owner: 'Inquiry from owner or operator', investor: 'Partnership inquiry', agency: 'Agency inquiry' };
+const subjectFor = (l: Lead) => `${SUBJECT[l.type]} | ${l.name} | Block Development Group`;
 
 function plainText(l: Lead) {
   const lines = [
-    `Type: ${l.type === 'owner' ? 'Owner or manager' : 'Investor or partner'}`,
+    `Type: ${LABEL[l.type]}`,
     `Name: ${l.name}`,
     `Email: ${l.email}`,
     `Phone: ${l.phone}`,
   ];
-  if (l.address) lines.push(`Property address: ${l.address}`);
-  lines.push('', 'Project description:', l.project);
+  if (l.address) lines.push(`Asset or location: ${l.address}`);
+  lines.push('', 'What should run better:', l.project);
   return lines.join('\n');
 }
 
@@ -83,12 +84,12 @@ async function sendWithFormSubmit(l: Lead, env: Env, to: string, origin: string)
       _replyto: l.email,
       _template: 'table',
       _captcha: 'false',
-      Type: l.type === 'owner' ? 'Owner or manager' : 'Investor or partner',
+      Type: LABEL[l.type],
       Name: l.name,
       Email: l.email,
       Phone: l.phone,
-      'Property address': l.address || 'n/a',
-      'Project description': l.project,
+      'Asset or location': l.address || 'n/a',
+      'What should run better': l.project,
     }),
   });
   const out = (await res.json().catch(() => ({}))) as { success?: string | boolean; message?: string };
@@ -112,7 +113,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
   const s = (k: string) => String(data[k] ?? '').trim().slice(0, 4000);
   const lead: Lead = {
-    type: data.type === 'investor' ? 'investor' : 'owner',
+    type: data.type === 'investor' ? 'investor' : data.type === 'agency' ? 'agency' : 'owner',
     name: s('name'),
     email: s('email'),
     phone: s('phone'),
@@ -124,8 +125,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     lead.name &&
     /^\S+@\S+\.\S+$/.test(lead.email) &&
     lead.phone.replace(/\D/g, '').length >= 10 &&
-    lead.project.length >= 10 &&
-    (lead.type === 'investor' || lead.address);
+    lead.project.length >= 10;
   if (!valid) return json({ ok: false, error: 'Missing or invalid fields' }, 400);
 
   const to = (env.CONTACT_TO || DEFAULT_TO).split(',').map((x) => x.trim()).filter(Boolean);

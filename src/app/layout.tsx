@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: { default: home.seo.title, template: '%s' },
   description: home.seo.description,
   applicationName: site.name,
-  keywords: ['property services Shreveport', 'rental rehab Texas', 'make-ready Louisiana', 'real estate development Dallas', 'Block Development Group', 'Block & Hewston'],
+  keywords: ['process improvement Texas', 'property services Shreveport', 'rental rehab Texas', 'make-ready Louisiana', 'real estate development Dallas', 'Block Development Group', 'Block & Hewston'],
   openGraph: { type: 'website', siteName: site.name, title: home.seo.title, description: home.seo.description, url: site.url, images: [{ url: '/og.png', width: 1200, height: 630, alt: site.name }] },
   twitter: { card: 'summary_large_image' },
   alternates: { canonical: '/' },

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { cta } from '@/content/site';
 import Reveal from './Reveal';
 
 type Photo = { src: string; alt: string };
@@ -106,12 +107,12 @@ export function ImageCards({ items }: { items: readonly { title: string; meta: s
   );
 }
 
-export function ServiceList({ items }: { items: readonly { title: string; body: string; items?: readonly string[] }[] }) {
+export function ServiceList({ items }: { items: readonly { id?: string; title: string; body: string; items?: readonly string[] }[] }) {
   return (
     <div>
       {items.map((it, i) => (
         <Reveal key={it.title} delay={i * 60}>
-          <div className="svc">
+          <div className="svc" id={it.id} style={it.id ? { scrollMarginTop: 'calc(var(--masthead-h) + 16px)' } : undefined}>
             <h3 className="svc__title" style={{ margin: 0 }}>{it.title}</h3>
             <div className="svc__body">
               <p>{it.body}</p>
@@ -139,7 +140,8 @@ export function ProcessSteps({ steps }: { steps: readonly { title: string; body?
   );
 }
 
-export function CTABand({ title, lede }: { title: readonly string[]; lede: string }) {
+export function CTABand({ title, lede, primary }: { title: readonly string[]; lede: string; primary?: { label: string; href: string } }) {
+  const a = primary ?? cta.owner;
   return (
     <section className="cta-band">
       <Reveal>
@@ -148,8 +150,8 @@ export function CTABand({ title, lede }: { title: readonly string[]; lede: strin
       <Reveal delay={150} className="cta-band__right">
         <p>{lede}</p>
         <div className="btns">
-          <Button href="/contact/?type=owner" tone="dark" arrow>Request a Walkthrough</Button>
-          <Button href="/contact/?type=investor" tone="dark" variant="secondary">Partner With Us</Button>
+          <Button href={a.href} tone="dark" arrow>{a.label}</Button>
+          <Button href={cta.investor.href} tone="dark" variant="secondary">{cta.investor.label}</Button>
         </div>
       </Reveal>
     </section>

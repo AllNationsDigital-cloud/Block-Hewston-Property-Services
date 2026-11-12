@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Masthead from '@/components/Masthead';
 import { CTABand, Figure, ProcessSteps, SectionHeader, ServiceList } from '@/components/ui';
-import { photos, rehab as c } from '@/content/site';
+import { cta, photos, rehab as c } from '@/content/site';
 
 export const metadata: Metadata = {
   title: c.seo.title,
@@ -28,7 +28,7 @@ export default function RehabPage() {
           <p className="note">{c.note}</p>
         </div>
       </section>
-      <CTABand title={c.cta.title} lede={c.cta.lede} />
+      <CTABand title={c.cta.title} lede={c.cta.lede} primary={cta.walkthrough} />
     </>
   );
 }

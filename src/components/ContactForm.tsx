@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { contact, site } from '@/content/site';
 
-type Kind = 'owner' | 'investor';
+type Kind = 'owner' | 'investor' | 'agency';
 type Errors = Partial<Record<'name' | 'email' | 'phone' | 'address' | 'project', string>>;
 
 export default function ContactForm() {
@@ -18,7 +18,7 @@ export default function ContactForm() {
   // Preselect owner / investor from ?type=
   useEffect(() => {
     const t = new URLSearchParams(window.location.search).get('type');
-    if (t === 'owner' || t === 'investor') setKind(t);
+    if (t === 'owner' || t === 'investor' || t === 'agency') setKind(t);
   }, []);
   useEffect(() => {
     if (status === 'success') successRef.current?.focus();
@@ -30,7 +30,6 @@ export default function ContactForm() {
     if (!get('name')) e.name = 'Enter your name.';
     if (!/^\S+@\S+\.\S+$/.test(get('email'))) e.email = 'Enter a valid email address.';
     if (get('phone').replace(/\D/g, '').length < 10) e.phone = 'Enter a phone number with area code.';
-    if (kind === 'owner' && !get('address')) e.address = 'Enter the property address.';
     if (get('project').length < 10) e.project = 'Describe the project in a sentence or two.';
     return e;
   }
@@ -63,7 +62,7 @@ export default function ContactForm() {
         .map(([k, v]) => `${k}: ${v}`)
         .join('\n');
       setMailto(
-        `mailto:${site.email}?subject=${encodeURIComponent(kind === 'owner' ? 'Walkthrough request' : 'Partnership inquiry')}&body=${encodeURIComponent(lines)}`,
+        `mailto:${site.email}?subject=${encodeURIComponent(kind === 'investor' ? 'Partnership inquiry' : kind === 'agency' ? 'Agency inquiry' : 'Inquiry from owner or operator')}&body=${encodeURIComponent(lines)}`,
       );
       setStatus('error');
     }
@@ -116,7 +115,7 @@ export default function ContactForm() {
       </div>
       <div className="row">
         {field('phone', f.phoneLabel, <input id="phone" name="phone" type="tel" autoComplete="tel" required {...aria('phone')} />)}
-        {field('address', f.addressLabel, <input id="address" name="address" autoComplete="street-address" {...aria('address')} />, kind === 'investor' ? f.addressHint : undefined)}
+        {field('address', f.addressLabel, <input id="address" name="address" autoComplete="off" {...aria('address')} />, f.addressHint)}
       </div>
       {field('project', f.projectLabel, <textarea id="project" name="project" rows={5} required {...aria('project')} />, f.projectHint)}
 

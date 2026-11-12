@@ -25,16 +25,26 @@ export default function HomePage() {
         <SectionHeader title={h.intro.title} lede={h.intro.lede} action={<Button href={h.intro.action.href} arrow>{h.intro.action.label}</Button>} />
       </div>
 
-      <ImageCards items={h.tiers.map((t) => ({ ...t, photo: photos[t.photo] }))} />
+      <ImageCards items={h.engage.map((t) => ({ ...t, photo: photos[t.photo] }))} />
 
       <div className="pad">
         <div className="stack">
-          <SectionHeader layout="stacked" eyebrow={h.how.eyebrow} title={h.how.title} />
-          <ProcessSteps steps={h.how.steps} />
+          <SectionHeader layout="stacked" eyebrow={h.assets.eyebrow} title={h.assets.title} />
+          <ProcessSteps steps={h.assets.items} />
+          <div>
+            <Button href={h.assets.action.href} variant="text" arrow>{h.assets.action.label}</Button>
+          </div>
         </div>
       </div>
 
       <section className="alt pad">
+        <div className="stack">
+          <SectionHeader layout="stacked" eyebrow={h.how.eyebrow} title={h.how.title} />
+          <ProcessSteps steps={h.how.steps} />
+        </div>
+      </section>
+
+      <section className="pad">
         <div className="grid-2">
           {h.audiences.map((a, i) => (
             <Reveal key={a.eyebrow} delay={i * 120}>
@@ -55,7 +65,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="pad">
+      <section className="alt pad">
         <div className="stack" style={{ gap: 40 }}>
           <Statement lines={h.markets.lines} />
           <Reveal>
@@ -63,7 +73,7 @@ export default function HomePage() {
             <Button href="/markets/" variant="text" arrow>View markets</Button>
           </Reveal>
         </div>
-      </div>
+      </section>
 
       <CTABand title={h.cta.title} lede={h.cta.lede} />
     </>

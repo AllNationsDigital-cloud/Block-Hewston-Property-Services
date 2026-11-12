@@ -1,10 +1,12 @@
 # Block Development Group: website
 
+Positioning: veteran-led process improvement specialists. We acquire, consult or invest in assets we want to help grow more efficient (real estate, businesses, equipment, natural resources, government operations). Real estate pages remain as the proof of the model. The contact form accepts owners and operators, investors and partners, and government agencies.
+
 Next.js (App Router) + Tailwind CSS v4, statically exported for Cloudflare Pages. A small Cloudflare Pages Function handles the contact form.
 
 ```
 src/content/site.ts     ALL COPY lives here: edit text, nav, SEO titles/descriptions, photo mapping
-src/app/                routes: / , /property-services , /rehab-restoration , /development , /markets , /about , /contact
+src/app/                routes: / , /assets , /property-services , /rehab-restoration , /development , /markets , /about , /contact
 src/components/         Masthead, Footer, Logo, ui.tsx (Hero, SectionHeader, Statement, Figure, ImageCards,
                         ServiceList, ProcessSteps, CTABand, Button), Reveal, StateMap (TX + LA), ContactForm
 src/app/globals.css     the design system tokens and every component style

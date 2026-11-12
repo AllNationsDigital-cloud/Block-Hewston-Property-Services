@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Masthead from '@/components/Masthead';
 import { CTABand, Figure, ProcessSteps, SectionHeader, ServiceList } from '@/components/ui';
-import { photos, propertyServices as c } from '@/content/site';
+import { cta, photos, propertyServices as c } from '@/content/site';
 
 export const metadata: Metadata = {
   title: c.seo.title,
@@ -33,7 +33,7 @@ export default function PropertyServicesPage() {
           <ProcessSteps steps={c.process.steps} />
         </div>
       </div>
-      <CTABand title={c.cta.title} lede={c.cta.lede} />
+      <CTABand title={c.cta.title} lede={c.cta.lede} primary={cta.walkthrough} />
     </>
   );
 }

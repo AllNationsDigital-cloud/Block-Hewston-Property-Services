@@ -13,20 +13,21 @@ export const site = {
   phoneTel: '+14433658539',
   email: 'nico@blockdevelopmentgroup.com',
   description:
-    'Block Development Group is a veteran-led real estate services and development firm headquartered in Dallas, Texas. Property services, rehab and restoration, and development across Texas and Louisiana.',
+    'Block Development Group is a veteran-led process improvement firm headquartered in Dallas, Texas. We acquire, consult or invest in assets we want to help grow more efficient: real estate, businesses, equipment, natural resources and government operations.',
 };
 
 export const nav = [
+  { href: '/assets/', label: 'Assets' },
   { href: '/property-services/', label: 'Property Services' },
   { href: '/rehab-restoration/', label: 'Rehab & Restoration' },
   { href: '/development/', label: 'Development' },
-  { href: '/markets/', label: 'Markets' },
   { href: '/about/', label: 'About' },
 ];
 
 export const cta = {
-  owner: { label: 'Request a Walkthrough', href: '/contact/?type=owner' },
+  owner: { label: 'Start a Conversation', href: '/contact/?type=owner' },
   investor: { label: 'Partner With Us', href: '/contact/?type=investor' },
+  walkthrough: { label: 'Request a Walkthrough', href: '/contact/?type=owner' },
   mast: { label: 'Contact', href: '/contact/' },
 };
 
@@ -44,51 +45,97 @@ export const photos = {
 
 export const home = {
   seo: {
-    title: 'Block Development Group | Property Services, Rehab & Real Estate Development in Texas and Louisiana',
+    title: 'Block Development Group | Process Improvement, Acquisitions and Investment | Texas and Louisiana',
     description:
-      'Veteran-led real estate firm in Dallas. Make-ready, rehab and restoration, and real estate development across Texas and Louisiana, including Shreveport and Bossier.',
+      'Veteran-led process improvement specialists in Dallas. We acquire, consult or invest in real estate, businesses, equipment, natural resources and government operations. Property services in Shreveport, rehab in Texas and Louisiana.',
   },
   hero: {
-    title: ['Built', 'to hold.'],
-    lede: 'We take distressed property and return it to service. Real estate services and development across Texas and Louisiana, from make-ready to ground-up.',
+    title: ['Excellence', 'is our niche.'],
+    lede: 'We acquire, consult, or invest in assets we want to help grow more efficient. Real estate, businesses, equipment, natural resources and government operations.',
   },
   intro: {
-    title: ['We underwrite', 'like owners.', 'Because we are.'],
-    lede: 'Our crews do the work on the properties we manage and the projects we build. The scope a partner approves is the scope that gets delivered.',
-    action: { label: 'How we operate', href: '/about/' },
+    title: ['We are simply', 'process improvement', 'specialists.'],
+    lede: 'From small businesses to government logistics pipelines, we do it all. Our niche is excellence. We lead by spearheading innovation.',
+    action: { label: 'What we work on', href: '/assets/' },
   },
-  tiers: [
-    { title: 'Restore', meta: '01 · Property services', body: 'Cleanouts, turnovers, make-ready and full rehabs. Property back in service on schedule.', href: '/property-services/', photo: 'kitchen' },
-    { title: 'Reposition', meta: '02 · Rehab and restoration', body: 'Underperforming assets rebuilt to earn. Scope fixed, work documented.', href: '/rehab-restoration/', photo: 'demo' },
-    { title: 'Develop', meta: '03 · Development', body: 'Acquisition, infill and ground-up development across Texas and Louisiana.', href: '/development/', photo: 'formwork' },
+  engage: [
+    { title: 'Acquire', meta: '01 · We buy', body: 'We buy assets that can run better, then make them run better.', href: '/assets/#acquire', photo: 'steel' },
+    { title: 'Consult', meta: '02 · We advise', body: 'We bring our process to your operation and leave it working better than we found it.', href: '/assets/#consult', photo: 'timber' },
+    { title: 'Invest', meta: '03 · We back', body: 'We back assets and teams with room to grow more efficient.', href: '/assets/#invest', photo: 'formwork' },
   ] as const,
+  assets: {
+    eyebrow: 'Assets',
+    title: 'What we work on.',
+    action: { label: 'See the assets', href: '/assets/' },
+    items: [
+      { title: 'Real estate', body: 'Properties that should earn more.' },
+      { title: 'Businesses', body: 'Strong demand. Weak operations.' },
+      { title: 'Equipment', body: 'Fleets and machinery below capacity.' },
+      { title: 'Natural resources', body: 'Yield lost between source and market.' },
+      { title: 'Government', body: 'Public processes that cost more than they should.' },
+    ],
+  },
   how: {
     eyebrow: 'How we work',
-    title: 'One firm, start to finish.',
+    title: 'One method. Every asset.',
     steps: [
-      { title: 'Acquire', body: 'Land and existing assets in growth corridors from Dallas to Shreveport.' },
-      { title: 'Reposition', body: 'Rehab and restoration carried out by our own crews.' },
-      { title: 'Develop', body: 'Ground-up projects from entitlement to delivery.' },
-      { title: 'Hold', body: 'We own and operate what we build.' },
+      { title: 'Assess', body: 'We map how the asset runs today and where it loses time, money or output.' },
+      { title: 'Redesign', body: 'We rebuild the process around the result it should produce.' },
+      { title: 'Execute', body: 'We carry the change through ourselves. We do not hand you a report and leave.' },
+      { title: 'Sustain', body: 'We measure, adjust and hold the gains.' },
     ],
   },
   audiences: [
     {
-      eyebrow: 'For owners and managers',
-      title: ['Your boots', 'on the ground.'],
-      body: 'You are not on site. We are. Out-of-town landlords hand us the address and the objective. We return a documented result.',
+      eyebrow: 'For owners and operators',
+      title: ['Bring us', 'what is slow.'],
+      body: 'A business, a rental portfolio, a fleet, a yard or a field operation. If it should run better, we will tell you how and do the work.',
     },
     {
       eyebrow: 'For investors and partners',
-      title: ['A long-range', 'plan.'],
-      body: 'Two states, one operating discipline. We work with investors, developers, brokers and lenders who think in years, not quarters.',
+      title: ['Capital with', 'a method.'],
+      body: 'We invest in assets we can make more efficient, and we hold ourselves to the result. We work with investors, lenders, brokers and public agencies.',
     },
   ],
   markets: {
     lines: ['Texas. Louisiana.', 'Block by block.'],
-    body: 'Headquartered in Dallas. Operating across Dallas–Fort Worth, Houston and Shreveport–Bossier.',
+    body: 'Headquartered in Dallas. Our primary work is in Texas and Louisiana, including Dallas–Fort Worth, Houston and Shreveport–Bossier.',
   },
-  cta: { title: ['Bring us', 'the site.'], lede: 'For owners, landowners and capital partners with a property or project in Texas or Louisiana.' },
+  cta: { title: ['Bring us', 'the problem.'], lede: 'Owners, operators, investors and public agencies. Tell us what should run better.' },
+};
+
+export const assets = {
+  seo: {
+    title: 'Assets We Acquire, Improve and Invest In | Block Development Group',
+    description:
+      'Block Development Group acquires, consults on or invests in real estate, businesses, equipment, natural resources and government operations. Process improvement, Texas and Louisiana.',
+  },
+  head: {
+    eyebrow: 'Assets',
+    title: ['What we', 'work on.'],
+    lede: 'We acquire, consult, or invest in assets we want to help grow more efficient. The asset changes. The method does not.',
+  },
+  engage: {
+    eyebrow: 'How we engage',
+    title: 'Three ways in.',
+    items: [
+      { id: 'acquire', title: 'Acquire', body: 'We buy assets that can run better. We take ownership of the problem, fix the process and hold the result.', items: ['Buy', 'Improve', 'Hold'] },
+      { id: 'consult', title: 'Consult', body: 'We bring our process to your operation. We assess, redesign and help carry the change through, then step back.', items: ['Assess', 'Redesign', 'Deliver'] },
+      { id: 'invest', title: 'Invest', body: 'We back assets and teams with room to grow more efficient, and we stay close enough to help.', items: ['Capital', 'Method', 'Follow-through'] },
+    ],
+  },
+  classes: {
+    eyebrow: 'Asset classes',
+    title: 'Five kinds of asset.',
+    items: [
+      { title: 'Real estate properties', body: 'Distressed, underperforming and overlooked property. We clean, rehab, reposition and develop it. This is where we began. See Property Services, Rehab and Restoration, and Development.', items: ['Make-ready', 'Rehab', 'Development'] },
+      { title: 'Businesses', body: 'Small businesses with real demand and weak operations. We find the process that holds them back and fix it.', items: ['Operations', 'Workflow', 'Growth'] },
+      { title: 'Equipment', body: 'Fleets, machinery and tools that sit idle or run below capacity. We improve utilization, maintenance and flow.', items: ['Utilization', 'Maintenance', 'Flow'] },
+      { title: 'Natural resources', body: 'Land, timber, water, minerals and energy. We look for waste and delay between the resource and the market.', items: ['Yield', 'Logistics'] },
+      { title: 'Government inefficiencies', body: 'Logistics pipelines and public processes that cost more and move slower than they should. We map them, redesign them and help deliver the change.', items: ['Logistics', 'Public processes'] },
+    ],
+  },
+  cta: { title: ['Bring us', 'the problem.'], lede: 'Tell us what should run better. We will tell you how.' },
 };
 
 export const propertyServices = {
@@ -98,7 +145,7 @@ export const propertyServices = {
       'Make-ready Louisiana and Texas landlords rely on. Turnovers, cleanouts, painting, repairs and full rehab of vacant rentals, with photo documentation and clear scopes.',
   },
   head: {
-    eyebrow: 'Property services',
+    eyebrow: 'Real estate · Property services',
     title: ['Vacant to', 'rent-ready.'],
     lede: 'Turnovers, cleanouts, painting, repairs and full rehab. One accountable crew across Texas and Louisiana. Every job starts with a walkthrough and a written scope.',
   },
@@ -140,7 +187,7 @@ export const rehab = {
       'Rent-ready restorations, distressed asset recovery and portfolio turns across Texas and Louisiana. Full-scope rehab by a veteran-led team.',
   },
   head: {
-    eyebrow: 'Rehab and restoration',
+    eyebrow: 'Real estate · Rehab and restoration',
     title: ['Full scope.', 'One team.'],
     lede: 'Projects beyond a standard turn. We restore distressed property to a condition the market will lease.',
   },
@@ -226,17 +273,17 @@ export const markets = {
 
 export const about = {
   seo: {
-    title: 'About Block Development Group | Veteran-Led Real Estate Services and Development',
+    title: 'About Block Development Group | Veteran-Led Process Improvement Specialists',
     description:
-      'A veteran-led real estate services and development firm built on discipline, accountability and execution. The operating brand of Block & Hewston.',
+      'A veteran-led firm of process improvement specialists. We acquire, consult or invest in assets we want to help grow more efficient. The operating brand of Block & Hewston.',
   },
   hero: {
-    title: ['Quiet', 'professionals.'],
-    lede: 'A veteran-led firm headquartered in Dallas. We say what we will do, then we do it.',
+    title: ['We improve', 'how assets run.'],
+    lede: 'A veteran-led firm headquartered in Dallas. We are simply process improvement specialists.',
   },
   intro: {
-    title: ['Services first.', 'Development', 'next.'],
-    lede: 'Block Development Group is the operating brand of Block & Hewston. We began with property services for landlords and owners, and we are building a development group on that foundation.',
+    title: ['Our niche', 'is excellence.'],
+    lede: 'We acquire, consult, or invest in assets we want to help grow more efficient. From small businesses to government logistics pipelines, we do it all. We lead by spearheading innovation.',
   },
   values: {
     eyebrow: 'Standards',
@@ -245,41 +292,43 @@ export const about = {
       { title: 'Discipline', body: 'We plan the work, define the scope and hold to it.' },
       { title: 'Accountability', body: 'We answer for results. Problems are reported early and owned fully.' },
       { title: 'Execution', body: 'We finish. On schedule, to scope, documented.' },
+      { title: 'Innovation', body: 'We spearhead better methods and put them to work.' },
     ],
   },
   statement: ['Texas. Louisiana.', 'Block by block.'],
   parent: {
     eyebrow: 'Parent company',
     title: ['Part of', 'Block & Hewston.'],
-    body: 'Block & Hewston protects, holds and improves the critical infrastructure behind global trade, and measures success by how well it serves the communities it is part of.',
+    body: 'Block Development Group is the operating brand of Block & Hewston. Block & Hewston protects, holds and improves the critical infrastructure behind global trade, and measures success by how well it serves the communities it is part of.',
     link: 'Visit Block & Hewston',
   },
-  cta: { title: ['Work with', 'a firm that finishes.'], lede: 'Owners request a walkthrough. Investors open a conversation.' },
+  cta: { title: ['Work with', 'a firm that finishes.'], lede: 'Owners, operators, investors and public agencies. Start a conversation.' },
 };
 
 export const contact = {
   seo: {
-    title: 'Contact Block Development Group | Request a Walkthrough or Partner With Us',
-    description: 'Request a property walkthrough or open an investment conversation with Block Development Group in Dallas, Texas.',
+    title: 'Contact Block Development Group | Start a Conversation',
+    description: 'Tell Block Development Group what should run better. Owners, operators, investors and public agencies are welcome. Dallas, Texas.',
   },
   head: {
     eyebrow: 'Contact',
     title: ['Start a', 'conversation.'],
-    lede: 'Owners request a walkthrough. Investors, landowners, brokers and lenders introduce themselves. A principal responds directly.',
+    lede: 'Tell us what should run better. Owners, operators, investors, brokers, lenders and public agencies are all welcome. A principal responds directly.',
   },
   form: {
     typeLabel: 'I am a',
     types: [
-      { value: 'owner', label: 'Owner or manager' },
+      { value: 'owner', label: 'Owner or operator' },
       { value: 'investor', label: 'Investor or partner' },
+      { value: 'agency', label: 'Government or agency' },
     ],
     nameLabel: 'Full name',
     emailLabel: 'Email',
     phoneLabel: 'Phone',
-    addressLabel: 'Property address',
-    addressHint: 'Optional for investors',
-    projectLabel: 'Project description',
-    projectHint: 'The property, its status and what needs to happen',
+    addressLabel: 'Asset or location',
+    addressHint: 'Optional',
+    projectLabel: 'What should run better?',
+    projectHint: 'The asset, how it runs today and what needs to change',
     submit: 'Send inquiry',
     sending: 'Sending',
     successTitle: 'Received.',
@@ -293,7 +342,7 @@ export const footer = {
   address: 'Dallas, Texas\nServing Texas and Louisiana',
   legal: '© Block Development Group. A Block & Hewston company.',
   columns: [
-    { title: 'Work', links: [{ label: 'Property Services', href: '/property-services/' }, { label: 'Rehab & Restoration', href: '/rehab-restoration/' }, { label: 'Development', href: '/development/' }] },
+    { title: 'Work', links: [{ label: 'Assets', href: '/assets/' }, { label: 'Property Services', href: '/property-services/' }, { label: 'Rehab & Restoration', href: '/rehab-restoration/' }, { label: 'Development', href: '/development/' }] },
     { title: 'Firm', links: [{ label: 'Markets', href: '/markets/' }, { label: 'About', href: '/about/' }, { label: 'Contact', href: '/contact/' }] },
   ],
 };
