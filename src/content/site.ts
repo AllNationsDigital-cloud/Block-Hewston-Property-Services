@@ -55,7 +55,7 @@ export const home = {
   },
   intro: {
     title: ['We are simply', 'process improvement', 'specialists.'],
-    lede: 'From small businesses to government logistics pipelines, we do it all. Our niche is excellence. We lead by spearheading innovation.',
+    lede: 'Our work runs from small businesses to government logistics pipelines. We choose the assets we can make more efficient. Our niche is excellence. We lead by spearheading innovation.',
     action: { label: 'What we work on', href: '/assets/' },
   },
   engage: [
@@ -77,7 +77,7 @@ export const home = {
   },
   how: {
     eyebrow: 'How we work',
-    title: 'One method. Every asset.',
+    title: 'The same method every time.',
     steps: [
       { title: 'Assess', body: 'We map how the asset runs today and where it loses time, money or output.' },
       { title: 'Redesign', body: 'We rebuild the process around the result it should produce.' },
@@ -283,7 +283,7 @@ export const about = {
   },
   intro: {
     title: ['Our niche', 'is excellence.'],
-    lede: 'We acquire, consult, or invest in assets we want to help grow more efficient. From small businesses to government logistics pipelines, we do it all. We lead by spearheading innovation.',
+    lede: 'We acquire, consult, or invest in assets we want to help grow more efficient. Our work runs from small businesses to government logistics pipelines. We choose the assets we can make more efficient. We lead by spearheading innovation.',
   },
   values: {
     eyebrow: 'Standards',
